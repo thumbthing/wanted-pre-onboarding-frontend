@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
+import getCurrentDomain from "../components/Domain";
 
 const Main = () => {
-  const BASE_URL = "localhost:3000";
+  const domain = getCurrentDomain();
 
-  const navigate = useNavigate();
+  console.log("domian: ", domain);
 
   return (
     <StyledMainPageContainer>
@@ -14,25 +15,25 @@ const Main = () => {
       <div>
         <StyledList>
           <li>
-            <StyledInput
-              type='button'
-              value='로그인'
-              onClick={() => navigate("/login")}
-            />
+            <Link to={`${domain}/login`}>
+              <div>
+                <h1>로그인</h1>
+              </div>
+            </Link>
           </li>
           <li>
-            <StyledInput
-              type='button'
-              value='회원가입'
-              onClick={() => navigate("/register")}
-            />
+            <Link to={`${domain}/register`}>
+              <div>
+                <h1>회원가입</h1>
+              </div>
+            </Link>
           </li>
           <li>
-            <StyledInput
-              type='button'
-              value='Todo 리스트'
-              onClick={() => navigate("/todo")}
-            />
+            <Link to={`${domain}/todo`}>
+              <div>
+                <h1>Todo 리스트</h1>
+              </div>
+            </Link>
           </li>
         </StyledList>
       </div>
@@ -54,12 +55,4 @@ const StyledList = styled.ul`
   li + li {
     margin-top: 5px;
   }
-`;
-
-const StyledInput = styled.input`
-  display: flex;
-  width: 500px;
-  height: 100px;
-  font-size: 75px;
-  text-align: center;
 `;
