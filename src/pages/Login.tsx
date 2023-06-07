@@ -2,8 +2,8 @@ import { useState } from "react";
 import { styled } from "styled-components";
 
 const Login = () => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [id, setId] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   return (
     <StyledContainer>

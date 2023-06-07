@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
+import IdInput from "../components/IdInput";
 
 const Register = () => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [id, setId] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleIdChange: (value: string) => void = useCallback((value) => {
+    setId(value);
+  }, []);
 
   return (
     <StyledContainer>
@@ -11,10 +16,7 @@ const Register = () => {
         <h1>회원가입 페이지</h1>
       </div>
       <StyledInputBox>
-        <StyledIdBox>
-          <span>이메일</span>
-          <input data-testid='email-input' />
-        </StyledIdBox>
+        <IdInput onChange={handleIdChange} />
         <StyledPasswordBox>
           <span>비밀번호</span>
           <input data-testid='password-input' />
@@ -37,13 +39,6 @@ const StyledInputBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-`;
-
-const StyledIdBox = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 10px;
 `;
 
 const StyledPasswordBox = styled.div`
