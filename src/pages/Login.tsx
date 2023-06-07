@@ -1,55 +1,59 @@
+import { useState } from "react";
 import { styled } from "styled-components";
 
 const Login = () => {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
-    <StyledLoginContainer>
+    <StyledContainer>
       <div>
         <h1>로그인 페이지</h1>
       </div>
-      <StyledLoginInputBox>
-        <StyledEmailBox>
+      <StyledInputBox>
+        <StyledIdBox>
           <span>이메일</span>
           <input data-testid='email-input' />
-        </StyledEmailBox>
+        </StyledIdBox>
         <StyledPasswordBox>
           <span>비밀번호</span>
           <input data-testid='password-input' />
         </StyledPasswordBox>
-        <StyledLoginButton data-testid='signin-button'>
-          회원가입
-        </StyledLoginButton>
-      </StyledLoginInputBox>
-    </StyledLoginContainer>
+        <StyledButton data-testid='signin-button'>로그인</StyledButton>
+      </StyledInputBox>
+    </StyledContainer>
   );
 };
 
 export default Login;
 
-const StyledLoginContainer = styled.div`
+const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
 `;
 
-const StyledLoginInputBox = styled.div`
+const StyledInputBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
 `;
 
-const StyledEmailBox = styled.div`
+const StyledIdBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 10px;
 `;
 
 const StyledPasswordBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 10px;
 `;
 
-const StyledLoginButton = styled.button`
+const StyledButton = styled.button`
   display: flex;
   justify-content: space-evenly;
 `;
