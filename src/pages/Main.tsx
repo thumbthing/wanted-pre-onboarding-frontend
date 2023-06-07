@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
 
 const Main = () => {
   const BASE_URL = "localhost:3000";
@@ -6,31 +7,59 @@ const Main = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <StyledMainPageContainer>
       <div>
         <h1>Wanted preOnboarding 사전과제</h1>
       </div>
       <div>
-        <ul>
+        <StyledList>
           <li>
-            <button value='로그인' onClick={() => navigate("/login")}>
-              로그인
-            </button>
+            <StyledInput
+              type='button'
+              value='로그인'
+              onClick={() => navigate("/login")}
+            />
           </li>
           <li>
-            <button value='회원가입' onClick={() => navigate("/register")}>
-              회원가입
-            </button>
+            <StyledInput
+              type='button'
+              value='회원가입'
+              onClick={() => navigate("/register")}
+            />
           </li>
           <li>
-            <button value='Todo' onClick={() => navigate("/todo")}>
-              Todo 리스트
-            </button>
+            <StyledInput
+              type='button'
+              value='Todo 리스트'
+              onClick={() => navigate("/todo")}
+            />
           </li>
-        </ul>
+        </StyledList>
       </div>
-    </div>
+    </StyledMainPageContainer>
   );
 };
 
 export default Main;
+
+const StyledMainPageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const StyledList = styled.ul`
+  list-style: none;
+
+  li + li {
+    margin-top: 5px;
+  }
+`;
+
+const StyledInput = styled.input`
+  display: flex;
+  width: 500px;
+  height: 100px;
+  font-size: 75px;
+  text-align: center;
+`;
