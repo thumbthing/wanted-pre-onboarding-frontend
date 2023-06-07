@@ -15,7 +15,7 @@ const IdInput: React.FC<IdInputProps> = ({ onChange }) => {
       }
       onChange(event.target.value);
     },
-    []
+    [onChange]
   );
 
   return (
