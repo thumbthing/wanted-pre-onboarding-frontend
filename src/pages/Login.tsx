@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { styled } from "styled-components";
+import IdInput from "../components/IdInput";
+import PasswordInput from "../components/PasswordInput";
 
 const Login = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const handleIdChange: (value: string) => void = useCallback((value) => {
+    setId(value);
+  }, []);
+
+  const handlePasswordChange: (value: string) => void = useCallback((value) => {
+    setPassword(value);
+  }, []);
 
   return (
     <StyledContainer>
@@ -11,14 +21,8 @@ const Login = () => {
         <h1>로그인 페이지</h1>
       </div>
       <StyledInputBox>
-        <StyledIdBox>
-          <span>이메일</span>
-          <input data-testid='email-input' />
-        </StyledIdBox>
-        <StyledPasswordBox>
-          <span>비밀번호</span>
-          <input data-testid='password-input' />
-        </StyledPasswordBox>
+        <IdInput onChange={handleIdChange} />
+        <PasswordInput onChange={handlePasswordChange} />
         <StyledButton data-testid='signin-button'>로그인</StyledButton>
       </StyledInputBox>
     </StyledContainer>
@@ -37,20 +41,6 @@ const StyledInputBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-`;
-
-const StyledIdBox = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 10px;
-`;
-
-const StyledPasswordBox = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 10px;
 `;
 
 const StyledButton = styled.button`
