@@ -15,7 +15,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ onChange }) => {
       }
       onChange(event.target.value);
     },
-    []
+    [onChange]
   );
 
   return (
