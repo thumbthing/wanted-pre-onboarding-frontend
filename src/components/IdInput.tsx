@@ -9,14 +9,15 @@ const IdInput: React.FC<IdInputProps> = ({ onChange }) => {
   const handleIdValidation = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.value.includes("@")) {
-        alert("id has @");
+        console.log("id has @");
       } else {
-        alert("id does not have @");
+        console.log("id does not have @");
       }
       onChange(event.target.value);
     },
     []
   );
+
   return (
     <StyledIdBox>
       <span>이메일</span>
