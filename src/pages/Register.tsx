@@ -1,7 +1,7 @@
 const Register = () => {
   return (
     <div>
-      <div>register page</div>
+      <div>회원가입 페이지</div>
     </div>
   );
 };
