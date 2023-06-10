@@ -46,3 +46,17 @@ export const createTodo = async (todo: string): Promise<AxiosResponse> => {
     throw error;
   }
 };
+
+export const getTodos = async () => {
+  const url = `https://www.pre-onboarding-selection-task.shop/todos`;
+  const acces_token = localStorage.getItem("acces_token");
+  const headers = {
+    Authorization: `Bearer ${acces_token}`,
+  };
+  try {
+    const response = await axios.get(url, { headers });
+    console.log(response.data);
+  } catch (error) {
+    throw error;
+  }
+};

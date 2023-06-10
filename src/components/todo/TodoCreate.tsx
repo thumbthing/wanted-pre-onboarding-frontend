@@ -17,7 +17,7 @@ const TodoCreate: React.FC<TodoInputProps> = ({ onChange, todo }) => {
   const handleTodoCreate = useCallback(async () => {
     try {
       const response = await createTodo(todo);
-      console.log("a;osidfja;woeihgaoeirhg;oaiewr", response.data);
+      return response;
     } catch (error) {
       throw error;
     }

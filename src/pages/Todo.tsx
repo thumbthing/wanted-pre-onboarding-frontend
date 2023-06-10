@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TodoCreate from "../components/todo/TodoCreate";
 
 const Todo = () => {
-  const [TodoText, setTodoText] = useState<string>("");
+  const [todoText, setTodoText] = useState<string>("");
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access_token");
 
@@ -20,7 +20,7 @@ const Todo = () => {
   return (
     <div>
       <div>Todo 페이지</div>
-      <TodoCreate onChange={handleTodoChange} todo={TodoText} />
+      <TodoCreate onChange={handleTodoChange} todo={todoText} />
       <div>
         <ul>
           <li>
