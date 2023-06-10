@@ -5,8 +5,6 @@ import getCurrentDomain from "../components/Domain";
 const Main = () => {
   const domain = getCurrentDomain();
 
-  console.log("domian: ", domain);
-
   return (
     <StyledMainPageContainer>
       <div>
@@ -17,21 +15,21 @@ const Main = () => {
           <li>
             <Link to={`${domain}/login`}>
               <div>
-                <h1>로그인</h1>
+                <StyledH1>로그인</StyledH1>
               </div>
             </Link>
           </li>
           <li>
             <Link to={`${domain}/register`}>
               <div>
-                <h1>회원가입</h1>
+                <StyledH1>회원가입</StyledH1>
               </div>
             </Link>
           </li>
           <li>
             <Link to={`${domain}/todo`}>
               <div>
-                <h1>Todo 리스트</h1>
+                <StyledH1>Todo 리스트</StyledH1>
               </div>
             </Link>
           </li>
@@ -55,4 +53,8 @@ const StyledList = styled.ul`
   li + li {
     margin-top: 5px;
   }
+`;
+
+const StyledH1 = styled.h1`
+  color: #ffffff;
 `;
