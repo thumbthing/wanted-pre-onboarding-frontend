@@ -1,13 +1,37 @@
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import { Sign } from "../request/Api";
 
-interface userInformation {
+interface SignInInformation {
   id: string;
   password: string;
+  request: string;
 }
 
-const SigninButton: React.FC<userInformation> = ({ id, password }) => {
+const SigninButton: React.FC<SignInInformation> = ({
+  id,
+  password,
+  request,
+}) => {
   const idValidation: boolean = id.includes("@");
   const passwordValidation: number = password.length;
+  const navigate = useNavigate();
+
+  const handleSignIn = useCallback(async () => {
+    const response = await Sign(id, password, request);
+    try {
+      if (response.status === 200) {
+        const data = response.data;
+        for (const key in data) {
+          localStorage.setItem(key, data[key]);
+        }
+        navigate("/todo");
+      }
+    } catch (error) {
+      throw error;
+    }
+  }, [id, password, request, navigate]);
 
   if (idValidation && passwordValidation > 7) {
     return (
@@ -15,6 +39,7 @@ const SigninButton: React.FC<userInformation> = ({ id, password }) => {
         data-testid='signin-button'
         type='button'
         value={"로그인"}
+        onClick={handleSignIn}
       />
     );
   } else {

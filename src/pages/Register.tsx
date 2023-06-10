@@ -7,6 +7,7 @@ import SignupButton from "../components/SignupButton";
 const Register = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [request] = useState<string>("signup");
 
   const handleIdChange: (value: string) => void = useCallback((value) => {
     setId(value);
@@ -33,7 +34,7 @@ const Register = () => {
       <StyledInputBox>
         <IdInput onChange={handleIdChange} />
         <PasswordInput onChange={handlePasswordChange} />
-        <SignupButton id={id} password={password} />
+        <SignupButton id={id} password={password} request={request} />
       </StyledInputBox>
     </StyledContainer>
   );

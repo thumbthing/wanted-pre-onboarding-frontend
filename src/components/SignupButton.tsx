@@ -1,21 +1,25 @@
 import { styled } from "styled-components";
-import SignUp from "../request/Api";
+import { Sign } from "../request/Api";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import getCurrentDomain from "./Domain";
 
-interface userInformation {
+interface SignUpInformation {
   id: string;
   password: string;
+  request: string;
 }
 
-const SignupButton: React.FC<userInformation> = ({ id, password }) => {
+const SignupButton: React.FC<SignUpInformation> = ({
+  id,
+  password,
+  request,
+}) => {
   const idValidation: boolean = id.includes("@");
   const passwordValidation: number = password.length;
   const navigate = useNavigate();
 
   const handleSignUp = useCallback(async () => {
-    const response = await SignUp(id, password);
+    const response = await Sign(id, password, request);
     try {
       if (response.status === 201) {
         navigate(`/login`);
@@ -23,7 +27,7 @@ const SignupButton: React.FC<userInformation> = ({ id, password }) => {
     } catch (error) {
       throw error;
     }
-  }, [id, password, navigate]);
+  }, [id, password, request, navigate]);
 
   if (idValidation && passwordValidation > 7) {
     return (

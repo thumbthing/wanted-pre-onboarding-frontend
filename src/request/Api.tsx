@@ -3,17 +3,19 @@ import axios, { AxiosResponse } from "axios";
 interface SignRequestBody {
   email: string;
   password: string;
+  request: string;
 }
 
-const SignUp = async (
+export const Sign = async (
   email: string,
-  password: string
+  password: string,
+  request: string
 ): Promise<AxiosResponse> => {
-  const url = `https://www.pre-onboarding-selection-task.shop/auth/signup`;
+  const url = `https://www.pre-onboarding-selection-task.shop/auth/${request}`;
   const headers = {
     "Content-Type": "application/json",
   };
-  const body: SignRequestBody = {
+  const body = {
     email,
     password,
   };
@@ -25,5 +27,3 @@ const SignUp = async (
     throw error;
   }
 };
-
-export default SignUp;

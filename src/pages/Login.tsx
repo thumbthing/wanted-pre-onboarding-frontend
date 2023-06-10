@@ -7,6 +7,7 @@ import SigninButton from "../components/SigninButton";
 const Login = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [request] = useState<string>("signin");
 
   const handleIdChange: (value: string) => void = useCallback((value) => {
     setId(value);
@@ -24,7 +25,7 @@ const Login = () => {
       <StyledInputBox>
         <IdInput onChange={handleIdChange} />
         <PasswordInput onChange={handlePasswordChange} />
-        <SigninButton id={id} password={password} />
+        <SigninButton id={id} password={password} request={request} />
       </StyledInputBox>
     </StyledContainer>
   );
