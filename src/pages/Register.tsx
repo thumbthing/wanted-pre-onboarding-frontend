@@ -30,7 +30,11 @@ const Register = () => {
 
   return (
     <StyledContainer>
-      <div>
+      <div
+        onClick={() => {
+          navigate("/");
+        }}
+      >
         <h1>회원가입 페이지</h1>
       </div>
       <StyledInputBox>
