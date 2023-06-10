@@ -1,9 +1,15 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TodoCreate from "../components/todo/TodoCreate";
 
 const Todo = () => {
+  const [TodoText, setTodoText] = useState<string>("");
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access_token");
+
+  const handleTodoChange: (value: string) => void = useCallback((value) => {
+    setTodoText(value);
+  }, []);
 
   useEffect(() => {
     if (!access_token) {
@@ -14,10 +20,7 @@ const Todo = () => {
   return (
     <div>
       <div>Todo 페이지</div>
-      <div>
-        <input type='text' data-testid='new-todo-input' />
-        <input type='button' data-testid='new-todo-add-button' value={"추가"} />
-      </div>
+      <TodoCreate onChange={handleTodoChange} todo={TodoText} />
       <div>
         <ul>
           <li>

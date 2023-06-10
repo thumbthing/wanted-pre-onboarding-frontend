@@ -30,8 +30,9 @@ export const Sign = async (
 
 export const createTodo = async (todo: string): Promise<AxiosResponse> => {
   const url = `https://www.pre-onboarding-selection-task.shop/todos`;
+  const access_token = localStorage.getItem("access_token");
   const headers = {
-    Authorization: "Bearer access_token",
+    Authorization: `Bearer ${access_token}`,
     "Content-Type": "application/json",
   };
   const body = {
