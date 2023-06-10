@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { styled } from "styled-components";
 import IdInput from "../components/IdInput";
 import PasswordInput from "../components/PasswordInput";
+import SignupButton from "../components/SignupButton";
 
 const Register = () => {
   const [id, setId] = useState<string>("");
@@ -32,20 +33,7 @@ const Register = () => {
       <StyledInputBox>
         <IdInput onChange={handleIdChange} />
         <PasswordInput onChange={handlePasswordChange} />
-        {id.includes("@") && password.length > 7 ? (
-          <StyledButton
-            data-testid='signin-button'
-            type='button'
-            value={"회원가입"}
-          />
-        ) : (
-          <StyledButton
-            data-testid='signin-button'
-            type='button'
-            value={`아이디 조건 : @ 포함 \n 비밀번호 조건: 8자 이상`}
-            disabled
-          />
-        )}
+        <SignupButton id={id} password={password} />
       </StyledInputBox>
     </StyledContainer>
   );
@@ -63,9 +51,4 @@ const StyledInputBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-`;
-
-const StyledButton = styled.input`
-  display: flex;
-  justify-content: space-evenly;
 `;

@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { styled } from "styled-components";
 import IdInput from "../components/IdInput";
 import PasswordInput from "../components/PasswordInput";
+import SigninButton from "../components/SigninButton";
 
 const Login = () => {
   const [id, setId] = useState<string>("");
@@ -23,20 +24,7 @@ const Login = () => {
       <StyledInputBox>
         <IdInput onChange={handleIdChange} />
         <PasswordInput onChange={handlePasswordChange} />
-        {id.includes("@") && password.length > 7 ? (
-          <StyledButton
-            data-testid='signin-button'
-            type='button'
-            value={"회원가입"}
-          />
-        ) : (
-          <StyledButton
-            data-testid='signin-button'
-            type='button'
-            value={`아이디 조건 : @ 포함 \n 비밀번호 조건: 8자 이상`}
-            disabled
-          />
-        )}
+        <SigninButton id={id} password={password} />
       </StyledInputBox>
     </StyledContainer>
   );
