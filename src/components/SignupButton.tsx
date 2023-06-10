@@ -22,7 +22,7 @@ const SignupButton: React.FC<userInformation> = ({ id, password }) => {
       <StyledButton
         data-testid='signup-button'
         type='button'
-        value={`아이디 조건 : @ 포함 \n 비밀번호 조건: 8자 이상이어야 합니다`}
+        value={`아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야 합니다`}
         disabled
       />
     );
