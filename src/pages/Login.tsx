@@ -1,13 +1,16 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import IdInput from "../components/IdInput";
 import PasswordInput from "../components/PasswordInput";
 import SigninButton from "../components/SigninButton";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [request] = useState<string>("signin");
+  const navigate = useNavigate();
+  const access_token = localStorage.getItem("access_token");
 
   const handleIdChange: (value: string) => void = useCallback((value) => {
     setId(value);
@@ -16,6 +19,12 @@ const Login = () => {
   const handlePasswordChange: (value: string) => void = useCallback((value) => {
     setPassword(value);
   }, []);
+
+  useEffect(() => {
+    if (access_token) {
+      navigate("/todo");
+    }
+  }, [navigate, access_token]);
 
   return (
     <StyledContainer>
