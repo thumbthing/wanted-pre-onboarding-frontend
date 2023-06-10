@@ -27,3 +27,21 @@ export const Sign = async (
     throw error;
   }
 };
+
+export const createTodo = async (todo: string): Promise<AxiosResponse> => {
+  const url = `https://www.pre-onboarding-selection-task.shop/todos`;
+  const headers = {
+    Authorization: "Bearer access_token",
+    "Content-Type": "application/json",
+  };
+  const body = {
+    todo: todo,
+  };
+
+  try {
+    const response = await axios.post(url, body, { headers });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
