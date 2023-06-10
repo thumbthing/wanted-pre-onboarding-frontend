@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import IdInput from "../components/IdInput";
-import PasswordInput from "../components/PasswordInput";
-import SignupButton from "../components/SignupButton";
+import IdInput from "../components/sign/IdInput";
+import PasswordInput from "../components/sign/PasswordInput";
+import SignupButton from "../components/sign/SignupButton";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {

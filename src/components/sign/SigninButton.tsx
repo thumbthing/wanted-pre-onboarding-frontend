@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { Sign } from "../request/Api";
+import { Sign } from "../../request/Api";
 
 interface SignInInformation {
   id: string;

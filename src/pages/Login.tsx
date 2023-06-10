@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import IdInput from "../components/IdInput";
-import PasswordInput from "../components/PasswordInput";
-import SigninButton from "../components/SigninButton";
+import IdInput from "../components/sign/IdInput";
+import PasswordInput from "../components/sign/PasswordInput";
+import SigninButton from "../components/sign/SigninButton";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
