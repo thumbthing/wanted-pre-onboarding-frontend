@@ -2,8 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TodoCreate from "../components/todo/TodoCreate";
 import { getTodos } from "../request/Api";
+import TodoList from "../components/todo/TodoList";
 
-interface TodoListData {
+export interface TodoListData {
   id: number;
   todo: string;
   isCompleted: boolean;
@@ -31,7 +32,6 @@ const Todo = () => {
       try {
         const response = await getTodos();
         setTodoList(response.data);
-        console.log(todoList);
       } catch (error) {
         console.log(error);
       }
@@ -45,14 +45,7 @@ const Todo = () => {
       <TodoCreate onChange={handleTodoChange} todo={todoText} />
       <div>
         <ul>
-          <li>
-            <label>
-              <input type='checkbox' />
-              <span>todo 1</span>
-              <input type='button' data-testid='modify-button' value={"수정"} />
-              <input type='button' data-testid='delete-button' value={"삭제"} />
-            </label>
-          </li>
+          <TodoList todolist={todoList} />
         </ul>
       </div>
     </div>
