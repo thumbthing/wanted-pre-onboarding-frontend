@@ -53,8 +53,3 @@ const StyledInputBox = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-
-const StyledButton = styled.input`
-  display: flex;
-  justify-content: space-evenly;
-`;

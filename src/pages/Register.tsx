@@ -1,13 +1,16 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import IdInput from "../components/IdInput";
 import PasswordInput from "../components/PasswordInput";
 import SignupButton from "../components/SignupButton";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [request] = useState<string>("signup");
+  const navigate = useNavigate();
+  const access_token = localStorage.getItem("access_token");
 
   const handleIdChange: (value: string) => void = useCallback((value) => {
     setId(value);
@@ -17,14 +20,13 @@ const Register = () => {
     setPassword(value);
   }, []);
 
-  const API_URL = "https://www.pre-onboarding-selection-task.shop/";
+  // const API_URL = "https://www.pre-onboarding-selection-task.shop/";
 
-  const login = async () => {
-    try {
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (access_token) {
+      navigate("/todo");
     }
-  };
+  }, [navigate, access_token]);
 
   return (
     <StyledContainer>
