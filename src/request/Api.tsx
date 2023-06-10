@@ -47,15 +47,15 @@ export const createTodo = async (todo: string): Promise<AxiosResponse> => {
   }
 };
 
-export const getTodos = async () => {
+export const getTodos = async (): Promise<AxiosResponse> => {
   const url = `https://www.pre-onboarding-selection-task.shop/todos`;
-  const acces_token = localStorage.getItem("acces_token");
+  const access_token = localStorage.getItem("access_token");
   const headers = {
-    Authorization: `Bearer ${acces_token}`,
+    Authorization: `Bearer ${access_token}`,
   };
   try {
     const response = await axios.get(url, { headers });
-    console.log(response.data);
+    return response;
   } catch (error) {
     throw error;
   }

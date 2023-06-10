@@ -1,9 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TodoCreate from "../components/todo/TodoCreate";
+import { getTodos } from "../request/Api";
+
+interface TodoListData {
+  id: number;
+  todo: string;
+  isCompleted: boolean;
+  userId: number;
+}
 
 const Todo = () => {
   const [todoText, setTodoText] = useState<string>("");
+  const [todoList, setTodoList] = useState<TodoListData[]>([]);
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access_token");
 
@@ -16,6 +25,19 @@ const Todo = () => {
       navigate("/login");
     }
   }, [access_token, navigate]);
+
+  useEffect(() => {
+    const getTodoList = async () => {
+      try {
+        const response = await getTodos();
+        setTodoList(response.data);
+        console.log(todoList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getTodoList();
+  }, []);
 
   return (
     <div>
