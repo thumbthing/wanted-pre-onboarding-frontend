@@ -1,4 +1,8 @@
 import { styled } from "styled-components";
+import SignUp from "../request/Api";
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import getCurrentDomain from "./Domain";
 
 interface userInformation {
   id: string;
@@ -8,6 +12,18 @@ interface userInformation {
 const SignupButton: React.FC<userInformation> = ({ id, password }) => {
   const idValidation: boolean = id.includes("@");
   const passwordValidation: number = password.length;
+  const navigate = useNavigate();
+
+  const handleSignUp = useCallback(async () => {
+    const response = await SignUp(id, password);
+    try {
+      if (response.status === 201) {
+        navigate(`/login`);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }, [id, password, navigate]);
 
   if (idValidation && passwordValidation > 7) {
     return (
@@ -15,6 +31,7 @@ const SignupButton: React.FC<userInformation> = ({ id, password }) => {
         data-testid='signup-button'
         type='button'
         value={"회원가입"}
+        onClick={handleSignUp}
       />
     );
   } else {
