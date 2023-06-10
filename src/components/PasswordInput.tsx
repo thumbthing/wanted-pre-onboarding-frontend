@@ -8,11 +8,6 @@ interface PasswordInputProps {
 const PasswordInput: React.FC<PasswordInputProps> = ({ onChange }) => {
   const handlePasswordValidation = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      if (event.target.value.length > 8) {
-        console.log("password is longer then 8");
-      } else {
-        console.log("password is too short");
-      }
       onChange(event.target.value);
     },
     [onChange]

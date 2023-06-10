@@ -8,11 +8,6 @@ interface IdInputProps {
 const IdInput: React.FC<IdInputProps> = ({ onChange }) => {
   const handleIdValidation = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      if (event.target.value.includes("@")) {
-        console.log("id has @");
-      } else {
-        console.log("id does not have @");
-      }
       onChange(event.target.value);
     },
     [onChange]
