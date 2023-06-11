@@ -4,7 +4,7 @@
 
 ## 프로젝트 실행방법
 
-**https 방식** 
+**https 방식**
 
 git clone https://github.com/thumbthing/wanted-pre-onboarding-frontend.git
 
@@ -12,3 +12,5 @@ git clone https://github.com/thumbthing/wanted-pre-onboarding-frontend.git
 2. `npm start` or `yarn start`
 
 ## 배포 url
+
+vercel 로 배포 예정
