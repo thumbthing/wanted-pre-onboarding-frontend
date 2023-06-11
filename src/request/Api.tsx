@@ -61,6 +61,29 @@ export const getTodos = async (): Promise<AxiosResponse> => {
   }
 };
 
+export const updateTodo = async (
+  id: number,
+  todo: string,
+  isCompleted: boolean
+): Promise<AxiosResponse> => {
+  const url = `https://www.pre-onboarding-selection-task.shop/todos/${id}`;
+  const access_token = localStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${access_token}`,
+    "Content-Type": "application/json",
+  };
+  const body = {
+    todo: todo,
+    isCompleted: isCompleted,
+  };
+  try {
+    const response = axios.put(url, body, { headers });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const deleteTodo = async (id: number): Promise<AxiosResponse> => {
   const url = `https://www.pre-onboarding-selection-task.shop/todos/${id}`;
   const access_token = localStorage.getItem("access_token");

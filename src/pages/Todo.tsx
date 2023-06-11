@@ -28,7 +28,7 @@ const Todo = () => {
     [todoList]
   );
 
-  const handleOnTodoDelete: (value: TodoListData[]) => void = useCallback(
+  const handleGetNewTodoList: (value: TodoListData[]) => void = useCallback(
     (value) => {
       setTodoList([...value]);
     },
@@ -63,7 +63,10 @@ const Todo = () => {
       />
       <div>
         <ul>
-          <TodoList todolist={todoList} onTodoDelete={handleOnTodoDelete} />
+          <TodoList
+            todolist={todoList}
+            onGetNewTodoList={handleGetNewTodoList}
+          />
         </ul>
       </div>
     </div>
