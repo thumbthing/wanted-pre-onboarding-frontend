@@ -34,11 +34,24 @@ const SignInButton = ({ id, password }: signInButtonProps) => {
 			type="button"
 			value={
 				isValid
-					? `로그인`
+					? `  `
 					: `아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야 합니다`
 			}
 			onClick={handleSignIn}
 			disabled={isValid ? false : true}
+			style={
+				isValid
+					? {
+							width: `54px`,
+							height: `54px`,
+							backgroundImage: `url(${process.env.PUBLIC_URL}/valid.jpeg)`,
+							backgroundSize: `50px 50px`,
+					  }
+					: {
+							width: `220px`,
+							height: `40px`,
+					  }
+			}
 		/>
 	);
 };

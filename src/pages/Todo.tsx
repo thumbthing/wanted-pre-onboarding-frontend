@@ -4,6 +4,7 @@ import TodoCreate from '../components/todo/TodoCreate';
 import { getTodos } from '../request/Api';
 import TodoList from '../components/todo/TodoList';
 import { styled } from 'styled-components';
+import { StyledHeader } from '../components/style';
 
 export interface TodoListData {
 	id: number;
@@ -58,7 +59,7 @@ const Todo = () => {
 		<TodoContainer>
 			<TodoHeader onClick={() => navigate('/')}>
 				<h1>Todo 페이지</h1>
-				<button onClick={() => navigate('/')}>메인으로</button>
+				<button onClick={() => navigate('/')}></button>
 			</TodoHeader>
 			<TodoCreate
 				onChange={handleTodoChange}
@@ -79,18 +80,6 @@ const TodoContainer = styled.div`
 	flex-direction: column;
 `;
 
-const TodoHeader = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-
-	button {
-		display: flex;
-		justify-content: center;
-		margin: auto;
-		width: 40px;
-		height: 40px;
-	}
-`;
+const TodoHeader = StyledHeader;
 
 export default Todo;

@@ -27,8 +27,11 @@ export const StyledHeader = styled.div`
 		display: flex;
 		justify-content: center;
 		margin: auto;
+		margin-left: 10px;
 		width: 40px;
 		height: 40px;
+		background-image: url(${process.env.PUBLIC_URL}/home.png);
+		background-size: 36px 36px;
 	}
 `;
 

@@ -35,7 +35,7 @@ const Login = () => {
 				}}
 			>
 				<h1>로그인 페이지</h1>
-				<button onClick={() => navigate('/')}>메인으로</button>
+				<button onClick={() => navigate('/')}></button>
 			</LoginHeader>
 			<LoginInputBox>
 				<IdInput onChange={handleIdChange} />

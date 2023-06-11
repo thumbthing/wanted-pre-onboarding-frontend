@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import IdInput from '../components/sign/IdInput';
 import PasswordInput from '../components/sign/PasswordInput';
 import { useNavigate } from 'react-router-dom';
@@ -23,9 +23,11 @@ const Register = () => {
 		setPassword(value);
 	}, []);
 
-	if (access_token) {
-		navigate('/todo');
-	}
+	useEffect(() => {
+		if (access_token) {
+			navigate('/todo');
+		}
+	}, [navigate]);
 
 	return (
 		<SignUpContainer>
@@ -35,7 +37,7 @@ const Register = () => {
 				}}
 			>
 				<h1>회원가입 페이지</h1>
-				<button onClick={() => navigate('/')}>메인으로</button>
+				<button onClick={() => navigate('/')}></button>
 			</SignUpHeader>
 			<SignUpInputBox>
 				<IdInput onChange={handleIdChange} />
