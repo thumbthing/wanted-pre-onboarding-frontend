@@ -21,6 +21,13 @@ const Todo = () => {
     setTodoText(value);
   }, []);
 
+  const handleOnTodoCreate: (value: TodoListData) => void = useCallback(
+    (value) => {
+      setTodoList([...todoList, value]);
+    },
+    [todoList]
+  );
+
   useEffect(() => {
     if (!access_token) {
       navigate("/login");
@@ -42,7 +49,11 @@ const Todo = () => {
   return (
     <div>
       <div>Todo 페이지</div>
-      <TodoCreate onChange={handleTodoChange} todo={todoText} />
+      <TodoCreate
+        onChange={handleTodoChange}
+        todo={todoText}
+        onTodoCreate={handleOnTodoCreate}
+      />
       <div>
         <ul>
           <TodoList todolist={todoList} />

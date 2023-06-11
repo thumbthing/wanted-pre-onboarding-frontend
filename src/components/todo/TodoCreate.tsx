@@ -1,12 +1,18 @@
 import { ChangeEvent, useCallback } from "react";
 import { createTodo } from "../../request/Api";
+import { TodoListData } from "../../pages/Todo";
 
 interface TodoInputProps {
   onChange: (value: string) => void;
   todo: string;
+  onTodoCreate: (value: TodoListData) => void;
 }
 
-const TodoCreate: React.FC<TodoInputProps> = ({ onChange, todo }) => {
+const TodoCreate: React.FC<TodoInputProps> = ({
+  onChange,
+  todo,
+  onTodoCreate,
+}) => {
   const handleTodoInput = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       onChange(event.target.value);
@@ -17,11 +23,11 @@ const TodoCreate: React.FC<TodoInputProps> = ({ onChange, todo }) => {
   const handleTodoCreate = useCallback(async () => {
     try {
       const response = await createTodo(todo);
-      return response;
+      onTodoCreate(response.data);
     } catch (error) {
       throw error;
     }
-  }, [todo]);
+  }, [todo, onTodoCreate]);
 
   return (
     <div>
