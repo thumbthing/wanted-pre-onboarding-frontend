@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import IdInput from "../components/sign/IdInput";
 import PasswordInput from "../components/sign/PasswordInput";
-import SignupButton from "../components/sign/SignupButton";
+import SignUpButton from "../components/sign/SignUpButton";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -19,8 +19,6 @@ const Register = () => {
   const handlePasswordChange: (value: string) => void = useCallback((value) => {
     setPassword(value);
   }, []);
-
-  // const API_URL = "https://www.pre-onboarding-selection-task.shop/";
 
   useEffect(() => {
     if (access_token) {
@@ -40,7 +38,7 @@ const Register = () => {
       <StyledInputBox>
         <IdInput onChange={handleIdChange} />
         <PasswordInput onChange={handlePasswordChange} />
-        <SignupButton id={id} password={password} request={request} />
+        <SignUpButton id={id} password={password} request={request} />
       </StyledInputBox>
     </StyledContainer>
   );

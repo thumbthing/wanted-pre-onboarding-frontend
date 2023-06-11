@@ -23,7 +23,7 @@ const TodoCreate: React.FC<TodoInputProps> = ({
   const handleTodoCreate = useCallback(async () => {
     try {
       const response = await createTodo(todo);
-      onTodoCreate(response.data);
+      onTodoCreate(response?.data);
     } catch (error) {
       throw error;
     }

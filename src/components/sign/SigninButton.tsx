@@ -1,35 +1,30 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { Sign } from "../../request/Api";
+import { sign } from "../../request/Api";
 
-interface SignInInformation {
+interface signInButtonProps {
   id: string;
   password: string;
   request: string;
 }
 
-const SigninButton: React.FC<SignInInformation> = ({
-  id,
-  password,
-  request,
-}) => {
+const SignInButton = ({ id, password, request }: signInButtonProps) => {
   const idValidation: boolean = id.includes("@");
   const passwordValidation: number = password.length;
   const navigate = useNavigate();
 
   const handleSignIn = useCallback(async () => {
-    const response = await Sign(id, password, request);
     try {
-      if (response.status === 200) {
-        const data = response.data;
-        for (const key in data) {
-          localStorage.setItem(key, data[key]);
-        }
-        navigate("/todo");
+      const response = await sign(id, password, request);
+      const data = response?.data;
+
+      for (const key in data) {
+        localStorage.setItem(key, data[key]);
       }
+      navigate("/todo");
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   }, [id, password, request, navigate]);
 
@@ -54,7 +49,7 @@ const SigninButton: React.FC<SignInInformation> = ({
   }
 };
 
-export default SigninButton;
+export default SignInButton;
 
 const StyledButton = styled.input`
   display: flex;

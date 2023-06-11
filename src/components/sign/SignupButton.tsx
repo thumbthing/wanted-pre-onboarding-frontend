@@ -1,29 +1,23 @@
 import { styled } from "styled-components";
-import { Sign } from "../../request/Api";
+import { sign } from "../../request/Api";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface SignUpInformation {
+interface SignUpButtonProps {
   id: string;
   password: string;
   request: string;
 }
 
-const SignupButton: React.FC<SignUpInformation> = ({
-  id,
-  password,
-  request,
-}) => {
+const SignUpButton = ({ id, password, request }: SignUpButtonProps) => {
   const idValidation: boolean = id.includes("@");
   const passwordValidation: number = password.length;
   const navigate = useNavigate();
 
   const handleSignUp = useCallback(async () => {
-    const response = await Sign(id, password, request);
+    const response = await sign(id, password, request);
     try {
-      if (response.status === 201) {
-        navigate(`/login`);
-      }
+      navigate(`/login`);
     } catch (error) {
       throw error;
     }
@@ -31,25 +25,21 @@ const SignupButton: React.FC<SignUpInformation> = ({
 
   if (idValidation && passwordValidation > 7) {
     return (
-      <StyledButton
-        data-testid='signup-button'
-        value={"회원가입"}
-        onClick={handleSignUp}
-      />
+      <StyledButton data-testid='signup-button' onClick={handleSignUp}>
+        회원가입
+      </StyledButton>
     );
   } else {
     return (
-      <StyledButton
-        data-testid='signup-button'
-        type='button'
-        value={`아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야 합니다`}
-        disabled
-      />
+      <StyledButton data-testid='signup-button' type='button' disabled>
+        아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야
+        합니다
+      </StyledButton>
     );
   }
 };
 
-export default SignupButton;
+export default SignUpButton;
 
 const StyledButton = styled.button`
   display: flex;

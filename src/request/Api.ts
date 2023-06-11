@@ -1,51 +1,65 @@
 import axios, { AxiosResponse } from "axios";
 
-interface SignRequestBody {
-  email: string;
-  password: string;
-  request: string;
-}
+const instance = axios.create({
+  baseURL: "https://www.pre-onboarding-selection-task.shop",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-export const Sign = async (
+export const sign = async (
   email: string,
   password: string,
   request: string
-): Promise<AxiosResponse> => {
-  const url = `https://www.pre-onboarding-selection-task.shop/auth/${request}`;
-  const headers = {
-    "Content-Type": "application/json",
-  };
-  const body = {
+) => {
+  const data = {
     email,
     password,
   };
   try {
-    const response = await axios.post(url, body, { headers });
+    const response = await instance.post(`/auth/${request}`, data);
     return response;
   } catch (error) {
     console.log(error);
-    throw error;
+    return undefined;
   }
 };
 
-export const createTodo = async (todo: string): Promise<AxiosResponse> => {
-  const url = `https://www.pre-onboarding-selection-task.shop/todos`;
-  const access_token = localStorage.getItem("access_token");
+export const createTodo = async (todo: string) => {
+  const accessToken = localStorage.getItem("access_token");
   const headers = {
-    Authorization: `Bearer ${access_token}`,
+    Autorization: `Bearer ${accessToken}`,
     "Content-Type": "application/json",
   };
-  const body = {
-    todo: todo,
+  const data = {
+    todo,
   };
-
   try {
-    const response = await axios.post(url, body, { headers });
+    const response = await instance.post("/todos", data, { headers });
     return response;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
+
+// export const createTodo = async (todo: string): Promise<AxiosResponse> => {
+//   const url = `https://www.pre-onboarding-selection-task.shop/todos`;
+//   const access_token = localStorage.getItem("access_token");
+//   const headers = {
+//     Authorization: `Bearer ${access_token}`,
+//     "Content-Type": "application/json",
+//   };
+//   const body = {
+//     todo: todo,
+//   };
+
+//   try {
+//     const response = await axios.post(url, body, { headers });
+//     return response;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const getTodos = async (): Promise<AxiosResponse> => {
   const url = `https://www.pre-onboarding-selection-task.shop/todos`;
