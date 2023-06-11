@@ -56,40 +56,25 @@ export const getTodos = async () => {
   }
 };
 
-// export const getTodos = async (): Promise<AxiosResponse> => {
-//   const url = `https://www.pre-onboarding-selection-task.shop/todos`;
-//   const access_token = localStorage.getItem("access_token");
-//   const headers = {
-//     Authorization: `Bearer ${access_token}`,
-//   };
-//   try {
-//     const response = await axios.get(url, { headers });
-//     return response;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
 export const updateTodo = async (
   id: number,
   todo: string,
   isCompleted: boolean
-): Promise<AxiosResponse> => {
-  const url = `https://www.pre-onboarding-selection-task.shop/todos/${id}`;
-  const access_token = localStorage.getItem("access_token");
+) => {
+  const accessToken = localStorage.getItem("access_token");
   const headers = {
-    Authorization: `Bearer ${access_token}`,
+    Authorization: `Bearer ${accessToken}`,
     "Content-Type": "application/json",
   };
-  const body = {
-    todo: todo,
-    isCompleted: isCompleted,
+  const data = {
+    todo,
+    isCompleted,
   };
   try {
-    const response = axios.put(url, body, { headers });
+    const response = await instance.put(`/todos/${id}`, data, { headers });
     return response;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
 

@@ -15,12 +15,12 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
   const handleTodoDelete = useCallback(async (id: number) => {
     try {
       const deleteResponse = await deleteTodo(id);
-      if (deleteResponse.status === 204) {
+      if (deleteResponse) {
         const newTodoList = await getTodos();
         onGetNewTodoList(newTodoList?.data);
       }
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   }, []);
 
@@ -34,13 +34,13 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
   const handleTodoUpdate = useCallback(
     async (id: number, todo: string, isCompleted: boolean) => {
       try {
-        const updateResponse = await updateTodo(id, todo, isCompleted);
-        if (updateResponse.status === 200) {
+        const response = await updateTodo(id, todo, isCompleted);
+        if (response) {
           const newTodoList = await getTodos();
           onGetNewTodoList(newTodoList?.data);
         }
       } catch (error) {
-        throw error;
+        console.log(error);
       }
     },
     []
