@@ -28,6 +28,13 @@ const Todo = () => {
     [todoList]
   );
 
+  const handleOnTodoDelete: (value: TodoListData[]) => void = useCallback(
+    (value) => {
+      setTodoList([...value]);
+    },
+    [todoList]
+  );
+
   useEffect(() => {
     if (!access_token) {
       navigate("/login");
@@ -56,7 +63,7 @@ const Todo = () => {
       />
       <div>
         <ul>
-          <TodoList todolist={todoList} />
+          <TodoList todolist={todoList} onTodoDelete={handleOnTodoDelete} />
         </ul>
       </div>
     </div>

@@ -1,11 +1,25 @@
+import { useCallback } from "react";
 import { TodoListData } from "../../pages/Todo";
-import { deleteTodo } from "../../request/Api";
+import { deleteTodo, getTodos } from "../../request/Api";
 
 interface TodoListProps {
   todolist: TodoListData[];
+  onTodoDelete: (value: TodoListData[]) => void;
 }
 
-const TodoList = ({ todolist }: TodoListProps) => {
+const TodoList = ({ todolist, onTodoDelete }: TodoListProps) => {
+  const handleTodoDelete = useCallback(async (id: number) => {
+    try {
+      const deleteResponse = await deleteTodo(id);
+      if (deleteResponse.status === 204) {
+        const newTodoList = await getTodos();
+        onTodoDelete(newTodoList.data);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }, []);
+
   const MyTodoList = todolist.map(
     (value) => {
       return (
@@ -19,7 +33,7 @@ const TodoList = ({ todolist }: TodoListProps) => {
               data-testid='delete-button'
               value={"삭제"}
               onClick={() => {
-                deleteTodo(value.id);
+                handleTodoDelete(value.id);
               }}
             />
           </label>
