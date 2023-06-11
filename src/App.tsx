@@ -3,6 +3,7 @@ import Main from "./pages/Main";
 import Register from "./pages/Register";
 import Todo from "./pages/Todo";
 import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/todo' element={<Todo />} />
+      <Route path='/*' element={<NotFound />} />
     </Routes>
   );
 }
