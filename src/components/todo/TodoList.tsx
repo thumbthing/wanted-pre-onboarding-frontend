@@ -94,22 +94,22 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
                 }
               />
               <span>{value.todo}</span>
-              <input
-                type='button'
+              <button
                 data-testid='modify-button'
-                value={"수정"}
                 onClick={() => (
                   setIsModify(value.id), setModifiedTodo(value.todo)
                 )}
-              />
-              <input
-                type='button'
+              >
+                수정
+              </button>
+              <button
                 data-testid='delete-button'
-                value={"삭제"}
                 onClick={() => {
                   handleTodoDelete(value.id);
                 }}
-              />
+              >
+                삭제
+              </button>
             </label>
           )}
         </li>
