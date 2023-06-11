@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useCallback } from 'react';
-import styled from 'styled-components';
+import { StyledUserInformationBox } from '../style';
 
 interface PasswordInputProps {
 	onChange: (value: string) => void;
@@ -14,22 +14,17 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ onChange }) => {
 	);
 
 	return (
-		<StyledPasswordBox>
+		<PasswordContainer>
 			<span>비밀번호</span>
 			<input
 				data-testid="password-input"
 				type="password"
 				onChange={handlePasswordValidation}
 			/>
-		</StyledPasswordBox>
+		</PasswordContainer>
 	);
 };
 
 export default PasswordInput;
 
-const StyledPasswordBox = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	margin: 10px;
-`;
+const PasswordContainer = StyledUserInformationBox;

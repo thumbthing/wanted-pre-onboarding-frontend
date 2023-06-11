@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { styled } from 'styled-components';
 import { sign } from '../../request/Api';
+import { StyledButton } from '../style';
 
 interface signInButtonProps {
 	id: string;
@@ -31,7 +31,7 @@ const SignInButton = ({ id, password }: signInButtonProps) => {
 
 	if (idValidation && passwordValidation > 7) {
 		return (
-			<StyledButton
+			<SignInInputButton
 				data-testid="signin-button"
 				type="button"
 				value={'로그인'}
@@ -40,7 +40,7 @@ const SignInButton = ({ id, password }: signInButtonProps) => {
 		);
 	} else {
 		return (
-			<StyledButton
+			<SignInInputButton
 				data-testid="signin-button"
 				type="button"
 				value={`아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야 합니다`}
@@ -52,7 +52,4 @@ const SignInButton = ({ id, password }: signInButtonProps) => {
 
 export default SignInButton;
 
-const StyledButton = styled.input`
-	display: flex;
-	justify-content: space-evenly;
-`;
+const SignInInputButton = StyledButton;

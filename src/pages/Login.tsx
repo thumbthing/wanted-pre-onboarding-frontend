@@ -1,9 +1,13 @@
 import { useCallback, useState } from 'react';
-import { styled } from 'styled-components';
 import IdInput from '../components/sign/IdInput';
 import PasswordInput from '../components/sign/PasswordInput';
 import { useNavigate } from 'react-router-dom';
 import SignInButton from '../components/sign/SignInButton';
+import {
+	StyledContainer,
+	StyledHeader,
+	StyledInputBox,
+} from '../components/style';
 
 const Login = () => {
 	const [id, setId] = useState<string>('');
@@ -24,48 +28,28 @@ const Login = () => {
 	}
 
 	return (
-		<StyledContainer>
-			<SignHeader
+		<LoginContainer>
+			<LoginHeader
 				onClick={() => {
 					navigate('/');
 				}}
 			>
 				<h1>로그인 페이지</h1>
 				<button onClick={() => navigate('/')}>메인으로</button>
-			</SignHeader>
-			<StyledInputBox>
+			</LoginHeader>
+			<LoginInputBox>
 				<IdInput onChange={handleIdChange} />
 				<PasswordInput onChange={handlePasswordChange} />
 				<SignInButton id={id} password={password} />
-			</StyledInputBox>
-		</StyledContainer>
+			</LoginInputBox>
+		</LoginContainer>
 	);
 };
 
 export default Login;
 
-const StyledContainer = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-`;
+const LoginContainer = StyledContainer;
 
-const SignHeader = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+const LoginHeader = StyledHeader;
 
-	button {
-		display: flex;
-		justify-content: center;
-		margin: auto;
-		width: 40px;
-		height: 40px;
-	}
-`;
-
-const StyledInputBox = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-`;
+const LoginInputBox = StyledInputBox;

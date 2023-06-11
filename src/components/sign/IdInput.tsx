@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback } from 'react';
-import { styled } from 'styled-components';
+import { StyledUserInformationBox } from '../style';
 
 interface IdInputProps {
 	onChange: (value: string) => void;
@@ -14,22 +14,17 @@ const IdInput: React.FC<IdInputProps> = ({ onChange }) => {
 	);
 
 	return (
-		<StyledIdBox>
+		<IdContainer>
 			<span>이메일</span>
 			<input
 				data-testid="email-input"
 				type="text"
 				onChange={handleIdValidation}
 			/>
-		</StyledIdBox>
+		</IdContainer>
 	);
 };
 
 export default IdInput;
 
-const StyledIdBox = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	margin: 10px;
-`;
+const IdContainer = StyledUserInformationBox;
