@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [request] = useState<string>("signin");
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access_token");
 
@@ -38,7 +37,7 @@ const Login = () => {
       <StyledInputBox>
         <IdInput onChange={handleIdChange} />
         <PasswordInput onChange={handlePasswordChange} />
-        <SignInButton id={id} password={password} request={request} />
+        <SignInButton id={id} password={password} />
       </StyledInputBox>
     </StyledContainer>
   );

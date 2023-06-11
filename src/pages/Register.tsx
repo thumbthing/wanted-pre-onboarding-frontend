@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [request] = useState<string>("signup");
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access_token");
 
@@ -38,7 +37,7 @@ const Register = () => {
       <StyledInputBox>
         <IdInput onChange={handleIdChange} />
         <PasswordInput onChange={handlePasswordChange} />
-        <SignUpButton id={id} password={password} request={request} />
+        <SignUpButton id={id} password={password} />
       </StyledInputBox>
     </StyledContainer>
   );

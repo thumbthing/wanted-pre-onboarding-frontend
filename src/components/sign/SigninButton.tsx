@@ -6,12 +6,12 @@ import { sign } from "../../request/Api";
 interface signInButtonProps {
   id: string;
   password: string;
-  request: string;
 }
 
-const SignInButton = ({ id, password, request }: signInButtonProps) => {
+const SignInButton = ({ id, password }: signInButtonProps) => {
   const idValidation: boolean = id.includes("@");
   const passwordValidation: number = password.length;
+  const request: string = "signin";
   const navigate = useNavigate();
 
   const handleSignIn = useCallback(async () => {
@@ -19,9 +19,10 @@ const SignInButton = ({ id, password, request }: signInButtonProps) => {
       const response = await sign(id, password, request);
       const data = response?.data;
 
-      for (const key in data) {
-        localStorage.setItem(key, data[key]);
-      }
+      const key: string = Object.keys(data)[0];
+      const accessToken: string = Object.values(data)[0] as string;
+      localStorage.setItem(key, accessToken);
+
       navigate("/todo");
     } catch (error) {
       console.log(error);
@@ -42,7 +43,7 @@ const SignInButton = ({ id, password, request }: signInButtonProps) => {
       <StyledButton
         data-testid='signin-button'
         type='button'
-        value={`아이디 조건 : @ 포함 \n 비밀번호 조건: 8자 이상이어야 합니다`}
+        value={`아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야 합니다`}
         disabled
       />
     );

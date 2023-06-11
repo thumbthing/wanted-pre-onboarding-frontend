@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 const instance = axios.create({
   baseURL: "https://www.pre-onboarding-selection-task.shop",
@@ -91,17 +91,3 @@ export const deleteTodo = async (id: number) => {
     console.log(error);
   }
 };
-
-// export const deleteTodo = async (id: number): Promise<AxiosResponse> => {
-//   const url = `https://www.pre-onboarding-selection-task.shop/todos/${id}`;
-//   const access_token = localStorage.getItem("access_token");
-//   const headers = {
-//     Authorization: `Bearer ${access_token}`,
-//   };
-//   try {
-//     const response = await axios.delete(url, { headers });
-//     return response;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
