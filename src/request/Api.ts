@@ -78,16 +78,30 @@ export const updateTodo = async (
   }
 };
 
-export const deleteTodo = async (id: number): Promise<AxiosResponse> => {
-  const url = `https://www.pre-onboarding-selection-task.shop/todos/${id}`;
-  const access_token = localStorage.getItem("access_token");
+export const deleteTodo = async (id: number) => {
+  const accessToken = localStorage.getItem("access_token");
   const headers = {
-    Authorization: `Bearer ${access_token}`,
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
   };
   try {
-    const response = await axios.delete(url, { headers });
+    const response = await instance.delete(`/todos/${id}`, { headers });
     return response;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
+
+// export const deleteTodo = async (id: number): Promise<AxiosResponse> => {
+//   const url = `https://www.pre-onboarding-selection-task.shop/todos/${id}`;
+//   const access_token = localStorage.getItem("access_token");
+//   const headers = {
+//     Authorization: `Bearer ${access_token}`,
+//   };
+//   try {
+//     const response = await axios.delete(url, { headers });
+//     return response;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
