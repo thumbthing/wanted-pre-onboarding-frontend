@@ -21,7 +21,7 @@ const SignUpButton = ({ id, password }: SignUpButtonProps) => {
         navigate(`/login`);
       }
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   }, [id, password, request, navigate]);
 

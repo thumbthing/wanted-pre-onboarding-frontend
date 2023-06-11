@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import IdInput from "../components/sign/IdInput";
 import PasswordInput from "../components/sign/PasswordInput";
-import SignUpButton from "../components/sign/SignUpButton";
 import { useNavigate } from "react-router-dom";
+import SignUpButton from "../components/sign/SignUpButton";
 
 const Register = () => {
   const [id, setId] = useState<string>("");
@@ -19,11 +19,9 @@ const Register = () => {
     setPassword(value);
   }, []);
 
-  useEffect(() => {
-    if (access_token) {
-      navigate("/todo");
-    }
-  }, [navigate, access_token]);
+  if (access_token) {
+    navigate("/todo");
+  }
 
   return (
     <StyledContainer>

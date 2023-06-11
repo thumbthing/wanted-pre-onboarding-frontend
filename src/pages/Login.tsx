@@ -19,11 +19,9 @@ const Login = () => {
     setPassword(value);
   }, []);
 
-  useEffect(() => {
-    if (access_token) {
-      navigate("/todo");
-    }
-  }, [navigate, access_token]);
+  if (access_token) {
+    navigate("/todo");
+  }
 
   return (
     <StyledContainer>
