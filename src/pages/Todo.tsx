@@ -46,7 +46,7 @@ const Todo = () => {
     const getTodoList = async () => {
       try {
         const response = await getTodos();
-        setTodoList(response.data);
+        setTodoList(response?.data);
       } catch (error) {
         console.log(error);
       }

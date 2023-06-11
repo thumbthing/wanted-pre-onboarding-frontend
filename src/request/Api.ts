@@ -28,7 +28,7 @@ export const sign = async (
 export const createTodo = async (todo: string) => {
   const accessToken = localStorage.getItem("access_token");
   const headers = {
-    Autorization: `Bearer ${accessToken}`,
+    Authorization: `Bearer ${accessToken}`,
     "Content-Type": "application/json",
   };
   const data = {
@@ -42,38 +42,33 @@ export const createTodo = async (todo: string) => {
   }
 };
 
-// export const createTodo = async (todo: string): Promise<AxiosResponse> => {
+export const getTodos = async () => {
+  const accessToken = localStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  };
+  try {
+    const response = await instance.get("/todos", { headers });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// export const getTodos = async (): Promise<AxiosResponse> => {
 //   const url = `https://www.pre-onboarding-selection-task.shop/todos`;
 //   const access_token = localStorage.getItem("access_token");
 //   const headers = {
 //     Authorization: `Bearer ${access_token}`,
-//     "Content-Type": "application/json",
 //   };
-//   const body = {
-//     todo: todo,
-//   };
-
 //   try {
-//     const response = await axios.post(url, body, { headers });
+//     const response = await axios.get(url, { headers });
 //     return response;
 //   } catch (error) {
 //     throw error;
 //   }
 // };
-
-export const getTodos = async (): Promise<AxiosResponse> => {
-  const url = `https://www.pre-onboarding-selection-task.shop/todos`;
-  const access_token = localStorage.getItem("access_token");
-  const headers = {
-    Authorization: `Bearer ${access_token}`,
-  };
-  try {
-    const response = await axios.get(url, { headers });
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
 
 export const updateTodo = async (
   id: number,

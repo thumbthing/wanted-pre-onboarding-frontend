@@ -37,12 +37,9 @@ const TodoCreate: React.FC<TodoInputProps> = ({
         onChange={handleTodoInput}
         value={todo}
       />
-      <input
-        type='button'
-        data-testid='new-todo-add-button'
-        onClick={handleTodoCreate}
-        value={"추가"}
-      />
+      <button data-testid='new-todo-add-button' onClick={handleTodoCreate}>
+        추가
+      </button>
     </div>
   );
 };

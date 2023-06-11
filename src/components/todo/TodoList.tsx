@@ -17,7 +17,7 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
       const deleteResponse = await deleteTodo(id);
       if (deleteResponse.status === 204) {
         const newTodoList = await getTodos();
-        onGetNewTodoList(newTodoList.data);
+        onGetNewTodoList(newTodoList?.data);
       }
     } catch (error) {
       throw error;
@@ -37,7 +37,7 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
         const updateResponse = await updateTodo(id, todo, isCompleted);
         if (updateResponse.status === 200) {
           const newTodoList = await getTodos();
-          onGetNewTodoList(newTodoList.data);
+          onGetNewTodoList(newTodoList?.data);
         }
       } catch (error) {
         throw error;
@@ -118,7 +118,11 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
     [todolist]
   );
 
-  return <StyledUl>{MyTodoList}</StyledUl>;
+  return (
+    <StyledUl>
+      {todolist.length !== 0 ? MyTodoList : <div>todo 를 입력해주세요</div>}
+    </StyledUl>
+  );
 };
 
 export default TodoList;
