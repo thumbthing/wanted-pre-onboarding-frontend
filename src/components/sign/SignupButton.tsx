@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { sign } from "../../request/Api";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface SignUpButtonProps {
@@ -15,9 +15,11 @@ const SignUpButton = ({ id, password }: SignUpButtonProps) => {
   const navigate = useNavigate();
 
   const handleSignUp = useCallback(async () => {
-    const response = await sign(id, password, request);
     try {
-      navigate(`/login`);
+      const response = await sign(id, password, request);
+      if (response) {
+        navigate(`/login`);
+      }
     } catch (error) {
       throw error;
     }
@@ -29,9 +31,8 @@ const SignUpButton = ({ id, password }: SignUpButtonProps) => {
         data-testid='signup-button'
         type='button'
         onClick={handleSignUp}
-      >
-        회원가입
-      </StyledButton>
+        value={"회원가입"}
+      />
     );
   } else {
     return (

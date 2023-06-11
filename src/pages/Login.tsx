@@ -27,13 +27,14 @@ const Login = () => {
 
   return (
     <StyledContainer>
-      <div
+      <SignHeader
         onClick={() => {
           navigate("/");
         }}
       >
         <h1>로그인 페이지</h1>
-      </div>
+        <button onClick={() => navigate("/")}>메인으로</button>
+      </SignHeader>
       <StyledInputBox>
         <IdInput onChange={handleIdChange} />
         <PasswordInput onChange={handlePasswordChange} />
@@ -49,6 +50,20 @@ const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+`;
+
+const SignHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const StyledInputBox = styled.div`

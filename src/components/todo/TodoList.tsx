@@ -12,17 +12,20 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
   const [isModify, setIsModify] = useState<number>();
   const [modifiedTodo, setModifiedTodo] = useState<string>("");
 
-  const handleTodoDelete = useCallback(async (id: number) => {
-    try {
-      const deleteResponse = await deleteTodo(id);
-      if (deleteResponse) {
-        const newTodoList = await getTodos();
-        onGetNewTodoList(newTodoList?.data);
+  const handleTodoDelete = useCallback(
+    async (id: number) => {
+      try {
+        const deleteResponse = await deleteTodo(id);
+        if (deleteResponse) {
+          const newTodoList = await getTodos();
+          onGetNewTodoList(newTodoList?.data);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+    },
+    [onGetNewTodoList]
+  );
 
   const handleModifyTodoText = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +46,7 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
         console.log(error);
       }
     },
-    []
+    [onGetNewTodoList]
   );
 
   const MyTodoList = todolist.map(
@@ -55,9 +58,9 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
               <input
                 type='checkbox'
                 checked={value.isCompleted}
-                onChange={() =>
-                  handleTodoUpdate(value.id, value.todo, !value.isCompleted)
-                }
+                onChange={() => {
+                  handleTodoUpdate(value.id, value.todo, !value.isCompleted);
+                }}
               />
               <input
                 type='text'
@@ -96,9 +99,10 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
               <span>{value.todo}</span>
               <button
                 data-testid='modify-button'
-                onClick={() => (
-                  setIsModify(value.id), setModifiedTodo(value.todo)
-                )}
+                onClick={() => {
+                  setIsModify(value.id);
+                  setModifiedTodo(value.todo);
+                }}
               >
                 수정
               </button>

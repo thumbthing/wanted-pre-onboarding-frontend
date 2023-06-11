@@ -33,7 +33,7 @@ const Todo = () => {
     (value) => {
       setTodoList([...value]);
     },
-    [todoList]
+    []
   );
 
   useEffect(() => {
