@@ -55,7 +55,7 @@ const Todo = () => {
 
   return (
     <div>
-      <div>Todo 페이지</div>
+      <div onClick={() => navigate("/")}>Todo 페이지</div>
       <TodoCreate
         onChange={handleTodoChange}
         todo={todoText}
