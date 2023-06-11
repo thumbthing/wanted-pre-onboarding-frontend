@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 export const StyledButton = styled.input`
 	display: flex;
 	justify-content: space-evenly;
+	color: black;
 `;
 
 export const StyledUserInformationBox = styled.div`
