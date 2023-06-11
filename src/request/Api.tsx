@@ -60,3 +60,17 @@ export const getTodos = async (): Promise<AxiosResponse> => {
     throw error;
   }
 };
+
+export const deleteTodo = async (id: number): Promise<AxiosResponse> => {
+  const url = `https://www.pre-onboarding-selection-task.shop/todos/${id}`;
+  const access_token = localStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${access_token}`,
+  };
+  try {
+    const response = await axios.delete(url, { headers });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
