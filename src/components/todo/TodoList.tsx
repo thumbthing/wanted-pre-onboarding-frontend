@@ -1,6 +1,7 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { TodoListData } from "../../pages/Todo";
 import { deleteTodo, getTodos, updateTodo } from "../../request/Api";
+import { styled } from "styled-components";
 
 interface TodoListProps {
   todolist: TodoListData[];
@@ -64,23 +65,24 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
                 value={modifiedTodo}
                 onChange={(e) => handleModifyTodoText(e)}
               ></input>
-              <input
-                type='button'
+              <button
                 data-testid='submit-button'
-                value={"제출"}
                 onClick={() => {
                   handleTodoUpdate(value.id, modifiedTodo, value.isCompleted);
                   setIsModify(undefined);
                 }}
-              />
-              <input
-                type='button'
+              >
+                제출
+              </button>
+
+              <button
                 data-testid='cancel-button'
-                value={"취소"}
                 onClick={() => {
                   setIsModify(undefined);
                 }}
-              />
+              >
+                취소
+              </button>
             </label>
           ) : (
             <label>
@@ -116,7 +118,11 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
     [todolist]
   );
 
-  return <ul>{MyTodoList}</ul>;
+  return <StyledUl>{MyTodoList}</StyledUl>;
 };
 
 export default TodoList;
+
+const StyledUl = styled.ul`
+  list-style-type: none;
+`;

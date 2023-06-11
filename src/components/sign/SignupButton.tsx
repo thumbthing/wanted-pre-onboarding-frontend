@@ -33,7 +33,6 @@ const SignupButton: React.FC<SignUpInformation> = ({
     return (
       <StyledButton
         data-testid='signup-button'
-        type='button'
         value={"회원가입"}
         onClick={handleSignUp}
       />
@@ -52,7 +51,7 @@ const SignupButton: React.FC<SignUpInformation> = ({
 
 export default SignupButton;
 
-const StyledButton = styled.input`
+const StyledButton = styled.button`
   display: flex;
   justify-content: space-evenly;
 `;

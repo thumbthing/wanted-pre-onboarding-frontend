@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TodoCreate from "../components/todo/TodoCreate";
 import { getTodos } from "../request/Api";
 import TodoList from "../components/todo/TodoList";
+import { styled } from "styled-components";
 
 export interface TodoListData {
   id: number;
@@ -54,23 +55,42 @@ const Todo = () => {
   }, []);
 
   return (
-    <div>
-      <div onClick={() => navigate("/")}>Todo 페이지</div>
+    <TodoContainer>
+      <TodoHeader onClick={() => navigate("/")}>
+        <h1>Todo 페이지</h1>
+        <button onClick={() => navigate("/")}>메인으로</button>
+      </TodoHeader>
       <TodoCreate
         onChange={handleTodoChange}
         todo={todoText}
         onTodoCreate={handleOnTodoCreate}
       />
       <div>
-        <ul>
-          <TodoList
-            todolist={todoList}
-            onGetNewTodoList={handleGetNewTodoList}
-          />
-        </ul>
+        <TodoList todolist={todoList} onGetNewTodoList={handleGetNewTodoList} />
       </div>
-    </div>
+    </TodoContainer>
   );
 };
+
+const TodoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const TodoHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+  }
+`;
 
 export default Todo;
