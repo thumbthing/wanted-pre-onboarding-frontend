@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-import getCurrentDomain from "../components/Domain";
 
 const Main = () => {
-  const domain = getCurrentDomain();
-
   return (
     <StyledMainPageContainer>
       <div>
@@ -13,21 +10,21 @@ const Main = () => {
       <div>
         <StyledList>
           <li>
-            <Link to={`${domain}/login`}>
+            <Link to={`/login`}>
               <div>
                 <StyledH1>로그인</StyledH1>
               </div>
             </Link>
           </li>
           <li>
-            <Link to={`${domain}/register`}>
+            <Link to={`/register`}>
               <div>
                 <StyledH1>회원가입</StyledH1>
               </div>
             </Link>
           </li>
           <li>
-            <Link to={`${domain}/todo`}>
+            <Link to={`/todo`}>
               <div>
                 <StyledH1>Todo 리스트</StyledH1>
               </div>
