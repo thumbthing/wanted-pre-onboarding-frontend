@@ -53,69 +53,63 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
     (value) => {
       return (
         <li key={value.id}>
-          {isModify === value.id ? (
-            <label>
-              <input
-                type='checkbox'
-                checked={value.isCompleted}
-                onChange={() => {
-                  handleTodoUpdate(value.id, value.todo, !value.isCompleted);
-                }}
-              />
-              <input
-                type='text'
-                data-testid='modify-input'
-                value={modifiedTodo}
-                onChange={(e) => handleModifyTodoText(e)}
-              ></input>
-              <button
-                data-testid='submit-button'
-                onClick={() => {
-                  handleTodoUpdate(value.id, modifiedTodo, value.isCompleted);
-                  setIsModify(undefined);
-                }}
-              >
-                제출
-              </button>
-
-              <button
-                data-testid='cancel-button'
-                onClick={() => {
-                  setIsModify(undefined);
-                }}
-              >
-                취소
-              </button>
-            </label>
-          ) : (
-            <label>
-              <input
-                type='checkbox'
-                checked={value.isCompleted}
-                onChange={() =>
-                  handleTodoUpdate(value.id, value.todo, !value.isCompleted)
-                }
-              />
-              <span>{value.todo}</span>
-              <button
-                data-testid='modify-button'
-                onClick={() => {
-                  setIsModify(value.id);
-                  setModifiedTodo(value.todo);
-                }}
-              >
-                수정
-              </button>
-              <button
-                data-testid='delete-button'
-                onClick={() => {
-                  handleTodoDelete(value.id);
-                }}
-              >
-                삭제
-              </button>
-            </label>
-          )}
+          <label>
+            <input
+              type='checkbox'
+              checked={value.isCompleted}
+              onChange={() => {
+                handleTodoUpdate(value.id, value.todo, !value.isCompleted);
+              }}
+            />
+            {isModify === value.id ? (
+              <>
+                <input
+                  type='text'
+                  data-testid='modify-input'
+                  value={modifiedTodo}
+                  onChange={(e) => handleModifyTodoText(e)}
+                ></input>
+                <button
+                  data-testid='submit-button'
+                  onClick={() => {
+                    handleTodoUpdate(value.id, modifiedTodo, value.isCompleted);
+                    setIsModify(undefined);
+                  }}
+                >
+                  제출
+                </button>
+                <button
+                  data-testid='cancel-button'
+                  onClick={() => {
+                    setIsModify(undefined);
+                  }}
+                >
+                  취소
+                </button>
+              </>
+            ) : (
+              <>
+                <span>{value.todo}</span>
+                <button
+                  data-testid='modify-button'
+                  onClick={() => {
+                    setIsModify(value.id);
+                    setModifiedTodo(value.todo);
+                  }}
+                >
+                  수정
+                </button>
+                <button
+                  data-testid='delete-button'
+                  onClick={() => {
+                    handleTodoDelete(value.id);
+                  }}
+                >
+                  삭제
+                </button>
+              </>
+            )}
+          </label>
         </li>
       );
     },
