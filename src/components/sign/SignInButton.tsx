@@ -9,9 +9,8 @@ interface signInButtonProps {
 }
 
 const SignInButton = ({ id, password }: signInButtonProps) => {
-	const idValidation: boolean = id.includes('@');
-	const passwordValidation: number = password.length;
 	const request = 'signin';
+	const isValid = id.includes('@') && password.length > 7;
 	const navigate = useNavigate();
 
 	const handleSignIn = useCallback(async () => {
@@ -29,25 +28,19 @@ const SignInButton = ({ id, password }: signInButtonProps) => {
 		}
 	}, [id, password, request, navigate]);
 
-	if (idValidation && passwordValidation > 7) {
-		return (
-			<SignInInputButton
-				data-testid="signin-button"
-				type="button"
-				value={'로그인'}
-				onClick={handleSignIn}
-			/>
-		);
-	} else {
-		return (
-			<SignInInputButton
-				data-testid="signin-button"
-				type="button"
-				value={`아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야 합니다`}
-				disabled
-			/>
-		);
-	}
+	return (
+		<SignInInputButton
+			data-testid="signin-button"
+			type="button"
+			value={
+				isValid
+					? `로그인`
+					: `아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야 합니다`
+			}
+			onClick={handleSignIn}
+			disabled={isValid ? false : true}
+		/>
+	);
 };
 
 export default SignInButton;

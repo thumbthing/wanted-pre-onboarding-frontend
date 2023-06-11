@@ -1,9 +1,13 @@
 import { useCallback, useState } from 'react';
-import { styled } from 'styled-components';
 import IdInput from '../components/sign/IdInput';
 import PasswordInput from '../components/sign/PasswordInput';
 import { useNavigate } from 'react-router-dom';
 import SignUpButton from '../components/sign/SignUpButton';
+import {
+	StyledContainer,
+	StyledHeader,
+	StyledInputBox,
+} from '../components/style';
 
 const Register = () => {
 	const [id, setId] = useState<string>('');
@@ -24,34 +28,28 @@ const Register = () => {
 	}
 
 	return (
-		<StyledContainer>
-			<div
+		<SignUpContainer>
+			<SignUpHeader
 				onClick={() => {
 					navigate('/');
 				}}
 			>
 				<h1>회원가입 페이지</h1>
 				<button onClick={() => navigate('/')}>메인으로</button>
-			</div>
-			<StyledInputBox>
+			</SignUpHeader>
+			<SignUpInputBox>
 				<IdInput onChange={handleIdChange} />
 				<PasswordInput onChange={handlePasswordChange} />
 				<SignUpButton id={id} password={password} />
-			</StyledInputBox>
-		</StyledContainer>
+			</SignUpInputBox>
+		</SignUpContainer>
 	);
 };
 
 export default Register;
 
-const StyledContainer = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-`;
+const SignUpContainer = StyledContainer;
 
-const StyledInputBox = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-`;
+const SignUpHeader = StyledHeader;
+
+const SignUpInputBox = StyledInputBox;
