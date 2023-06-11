@@ -49,7 +49,7 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
     [onGetNewTodoList]
   );
 
-  const MyTodoList = todolist.map(
+  const myTodoList = todolist.map(
     (value) => {
       return (
         <li key={value.id}>
@@ -118,7 +118,7 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
 
   return (
     <StyledUl>
-      {todolist.length !== 0 ? MyTodoList : <div>todo 를 입력해주세요</div>}
+      {todolist.length !== 0 ? myTodoList : <div>todo 를 입력해주세요</div>}
     </StyledUl>
   );
 };

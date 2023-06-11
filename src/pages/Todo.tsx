@@ -36,9 +36,11 @@ const Todo = () => {
     []
   );
 
-  if (!access_token) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!access_token) {
+      navigate("/login");
+    }
+  }, [access_token, navigate]);
 
   useEffect(() => {
     const getTodoList = async () => {
