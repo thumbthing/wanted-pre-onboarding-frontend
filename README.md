@@ -13,4 +13,4 @@ git clone https://github.com/thumbthing/wanted-pre-onboarding-frontend.git
 
 ## 배포 url
 
-[사전과제 배포 url](wanted-pre-onboarding-frontend-z4yg-thumbthing.vercel.app)
+[사전과제 배포 url](wanted-pre-onboarding-frontend-thumbthing.vercel.app)
