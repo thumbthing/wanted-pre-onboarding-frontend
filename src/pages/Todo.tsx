@@ -17,7 +17,7 @@ const Todo = () => {
 	const [todoText, setTodoText] = useState<string>('');
 	const [todoList, setTodoList] = useState<TodoListData[]>([]);
 	const navigate = useNavigate();
-	const access_token = localStorage.getItem('access_token');
+	const accessToken = localStorage.getItem('access_token');
 
 	const handleTodoChange: (value: string) => void = useCallback((value) => {
 		setTodoText(value);
@@ -38,10 +38,10 @@ const Todo = () => {
 	);
 
 	useEffect(() => {
-		if (!access_token) {
+		if (!accessToken) {
 			navigate('/login');
 		}
-	}, [access_token, navigate]);
+	}, [accessToken, navigate]);
 
 	useEffect(() => {
 		const getTodoList = async () => {
