@@ -49,72 +49,61 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
     [onGetNewTodoList],
   );
 
-  const myTodoList = todolist.map(
-    (value) => {
-      return (
-        <li key={value.id}>
-          <label>
+  const myTodoList = todolist.map((value) => {
+    return (
+      <li key={value.id}>
+        <label>
+          <input
+            type="checkbox"
+            checked={value.isCompleted}
+            onChange={() => {
+              handleTodoUpdate(value.id, value.todo, !value.isCompleted);
+            }}
+          />
+          {isModify === value.id ? (
             <input
-              type="checkbox"
-              checked={value.isCompleted}
-              onChange={() => {
-                handleTodoUpdate(value.id, value.todo, !value.isCompleted);
-              }}
+              type="text"
+              data-testid="modify-input"
+              value={modifiedTodo}
+              onChange={(e) => handleModifyTodoText(e)}
             />
-            {isModify === value.id ? (
-              <>
-                <input
-                  type="text"
-                  data-testid="modify-input"
-                  value={modifiedTodo}
-                  onChange={(e) => handleModifyTodoText(e)}
-                ></input>
-                <button
-                  data-testid="submit-button"
-                  onClick={() => {
-                    handleTodoUpdate(value.id, modifiedTodo, value.isCompleted);
-                    setIsModify(undefined);
-                  }}
-                >
-                  제출
-                </button>
-                <button
-                  data-testid="cancel-button"
-                  onClick={() => {
-                    setIsModify(undefined);
-                  }}
-                >
-                  취소
-                </button>
-              </>
-            ) : (
-              <>
-                <span>{value.todo}</span>
-                <button
-                  data-testid="modify-button"
-                  onClick={() => {
-                    setIsModify(value.id);
-                    setModifiedTodo(value.todo);
-                  }}
-                >
-                  수정
-                </button>
-                <button
-                  data-testid="delete-button"
-                  onClick={() => {
-                    handleTodoDelete(value.id);
-                  }}
-                >
-                  삭제
-                </button>
-              </>
-            )}
-          </label>
-        </li>
-      );
-    },
-    [todolist],
-  );
+          ) : (
+            <span>{value.todo}</span>
+          )}
+          <button
+            data-testid={
+              isModify === value.id ? 'submit-button' : 'modify-button'
+            }
+            onClick={() => {
+              if (isModify === value.id) {
+                handleTodoUpdate(value.id, modifiedTodo, value.isCompleted);
+                setIsModify(undefined);
+              } else {
+                setIsModify(value.id);
+                setModifiedTodo(value.todo);
+              }
+            }}
+          >
+            {isModify === value.id ? '제출' : '수정'}
+          </button>
+          <button
+            data-testid={
+              isModify === value.id ? 'cancel-button' : 'delete-button'
+            }
+            onClick={() => {
+              if (isModify === value.id) {
+                setIsModify(undefined);
+              } else {
+                handleTodoDelete(value.id);
+              }
+            }}
+          >
+            {isModify === value.id ? '취소' : '삭제'}
+          </button>
+        </label>
+      </li>
+    );
+  });
 
   return (
     <StyledUl>

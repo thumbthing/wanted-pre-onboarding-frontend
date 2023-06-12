@@ -50,11 +50,7 @@ const SignButton = ({ id, password }: SignButtonProps) => {
           ? ''
           : `아이디 조건 : @ 포함되어야 합니다 \n 비밀번호 조건: 8자 이상이어야 합니다`
       }
-      onClick={() => {
-        {
-          isLogin ? handleSignIn : handleSignUp;
-        }
-      }}
+      onClick={isLogin ? handleSignIn : handleSignUp}
       disabled={isValid ? false : true}
       style={
         isValid
