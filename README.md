@@ -1,15 +1,18 @@
+# 원티드 프리온보딩 사전과제
+
 # 지원자 성명
 
 이민구
 
-## 프로젝트 실행방법
+## Installation
 
-**https 방식**
+1. `git clone https://github.com/thumbthing/wanted-pre-onboarding-frontend.git`
+2. `npm install`
+3. `npm start`
 
-git clone https://github.com/thumbthing/wanted-pre-onboarding-frontend.git
+## Deploy
 
-1. `npm install` or `yarn install`
-2. `npm start` or `yarn start`
+1. Vercel에 배포
 
 ## 배포 url
 
