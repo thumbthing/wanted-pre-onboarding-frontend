@@ -107,7 +107,13 @@ const TodoList = ({ todolist, onGetNewTodoList }: TodoListProps) => {
 
   return (
     <StyledUl>
-      {todolist.length !== 0 ? myTodoList : <div>todo 를 입력해주세요</div>}
+      {todolist.length !== 0 ? (
+        myTodoList
+      ) : (
+        <div>
+          <h3>할일 를 입력해주세요</h3>
+        </div>
+      )}
     </StyledUl>
   );
 };
@@ -140,7 +146,19 @@ const StyledUl = styled.ul`
 
     input[type='checkbox'] {
       margin-right: 8px;
-      transform: scale(1.2);
+      width: 20px;
+      height: 20px;
+      appearance: none;
+      border: 2px solid white;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type='checkbox']:checked {
+      background-color: white;
+      border-color: white;
     }
 
     input[type='text'] {
@@ -161,6 +179,8 @@ const StyledUl = styled.ul`
       color: white;
       font-size: 14px;
       font-weight: bold;
+      height: 40px;
+      width: 60px;
       cursor: pointer;
       transition: background-color 0.3s;
 
