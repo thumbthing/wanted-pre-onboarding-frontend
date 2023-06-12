@@ -116,4 +116,58 @@ export default TodoList;
 
 const StyledUl = styled.ul`
   list-style-type: none;
+  padding: 0;
+  margin: 10px;
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    label {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 25px;
+      width: 400px;
+    }
+
+    span {
+      display: flex;
+      align-items: flex-start;
+      width: 250px;
+    }
+
+    input[type='checkbox'] {
+      margin-right: 8px;
+      transform: scale(1.2);
+    }
+
+    input[type='text'] {
+      margin-right: 8px;
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 20px;
+      width: 250px;
+    }
+
+    button {
+      margin-right: 8px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: gray;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
 `;
