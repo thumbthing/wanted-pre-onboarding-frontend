@@ -7,17 +7,27 @@ const instance = axios.create({
 	},
 });
 
-export const sign = async (
-	email: string,
-	password: string,
-	request: string,
-) => {
+export const signUp = async (email: string, password: string) => {
 	const data = {
 		email,
 		password,
 	};
 	try {
-		const response = await instance.post(`/auth/${request}`, data);
+		const response = await instance.post(`/auth/signup`, data);
+		return response;
+	} catch (error) {
+		console.log(error);
+		return undefined;
+	}
+};
+
+export const signIn = async (email: string, password: string) => {
+	const data = {
+		email,
+		password,
+	};
+	try {
+		const response = await instance.post(`/auth/signin`, data);
 		return response;
 	} catch (error) {
 		console.log(error);

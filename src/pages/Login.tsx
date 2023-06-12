@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 import IdInput from '../components/sign/IdInput';
 import PasswordInput from '../components/sign/PasswordInput';
 import { useNavigate } from 'react-router-dom';
-import SignInButton from '../components/sign/SignInButton';
 import {
 	StyledContainer,
 	StyledHeader,
 	StyledInputBox,
 } from '../components/style';
+import SignButton from '../components/sign/SignButton';
 
 const Login = () => {
 	const [id, setId] = useState<string>('');
@@ -42,8 +42,8 @@ const Login = () => {
 			<LoginInputBox>
 				<IdInput onChange={handleIdChange} />
 				<PasswordInput onChange={handlePasswordChange} />
-				<SignInButton id={id} password={password} />
 			</LoginInputBox>
+			<SignButton id={id} password={password} />
 		</LoginContainer>
 	);
 };

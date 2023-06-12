@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 import IdInput from '../components/sign/IdInput';
 import PasswordInput from '../components/sign/PasswordInput';
 import { useNavigate } from 'react-router-dom';
-import SignUpButton from '../components/sign/SignUpButton';
 import {
 	StyledContainer,
 	StyledHeader,
 	StyledInputBox,
 } from '../components/style';
+import SignButton from '../components/sign/SignButton';
 
 const Register = () => {
 	const [id, setId] = useState<string>('');
@@ -42,7 +42,7 @@ const Register = () => {
 			<SignUpInputBox>
 				<IdInput onChange={handleIdChange} />
 				<PasswordInput onChange={handlePasswordChange} />
-				<SignUpButton id={id} password={password} />
+				<SignButton id={id} password={password} />
 			</SignUpInputBox>
 		</SignUpContainer>
 	);
