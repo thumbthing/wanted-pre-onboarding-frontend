@@ -8,9 +8,11 @@
 
 ## Installation
 
-> git clone https://github.com/thumbthing/wanted-pre-onboarding-frontend.git
-> npm install
-> npm start
+  git clone https://github.com/thumbthing/wanted-pre-onboarding-frontend.git
+
+  npm install
+
+  npm start
 
 ## Deploy
 
