@@ -38,12 +38,6 @@ const Todo = () => {
 	);
 
 	useEffect(() => {
-		if (!accessToken) {
-			navigate('/login');
-		}
-	}, [accessToken, navigate]);
-
-	useEffect(() => {
 		const getTodoList = async () => {
 			try {
 				const response = await getTodos();
@@ -52,8 +46,12 @@ const Todo = () => {
 				console.log(error);
 			}
 		};
-		getTodoList();
-	}, []);
+		if (accessToken) {
+			getTodoList();
+		} else {
+			navigate('/login');
+		}
+	}, [accessToken, navigate]);
 
 	return (
 		<TodoContainer>

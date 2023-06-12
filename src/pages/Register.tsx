@@ -13,7 +13,7 @@ const Register = () => {
 	const [id, setId] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const navigate = useNavigate();
-	const access_token = localStorage.getItem('access_token');
+	const accessToken = localStorage.getItem('access_token');
 
 	const handleIdChange: (value: string) => void = useCallback((value) => {
 		setId(value);
@@ -24,7 +24,7 @@ const Register = () => {
 	}, []);
 
 	useEffect(() => {
-		if (access_token) {
+		if (accessToken) {
 			navigate('/todo');
 		}
 	}, [navigate]);

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import IdInput from '../components/sign/IdInput';
 import PasswordInput from '../components/sign/PasswordInput';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Login = () => {
 	const [id, setId] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const navigate = useNavigate();
-	const access_token = localStorage.getItem('access_token');
+	const accessToken = localStorage.getItem('access_token');
 
 	const handleIdChange: (value: string) => void = useCallback((value) => {
 		setId(value);
@@ -23,9 +23,11 @@ const Login = () => {
 		setPassword(value);
 	}, []);
 
-	if (access_token) {
-		navigate('/todo');
-	}
+	useEffect(() => {
+		if (accessToken) {
+			navigate('/todo');
+		}
+	}, [accessToken, navigate]);
 
 	return (
 		<LoginContainer>
