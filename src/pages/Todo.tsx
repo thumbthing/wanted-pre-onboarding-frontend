@@ -16,6 +16,7 @@ const Todo = () => {
   return (
     <div>
       <TodoInput />
+      <TodoList />
     </div>
   );
 };
