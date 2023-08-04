@@ -53,11 +53,12 @@ const SignForm = () => {
         alert("로그인 성공");
         const accessToken = response.data.access_token;
         localStorage.setItem("access_token", accessToken);
+        navigate("/todo");
       } else {
         alert("로그인 실패");
       }
     } catch (error) {}
-  }, [email, password]);
+  }, [email, password, navigate]);
 
   return (
     <>
