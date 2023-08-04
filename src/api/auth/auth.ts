@@ -13,11 +13,24 @@ export const signUp = async ({ email, password }: UserInformation) => {
 
   try {
     const response = await instance.post(`/auth/signup`, data);
-    console.log(response.status);
-
     return response;
   } catch (error) {
     console.log("sign up error : ", error);
+    return null;
+  }
+};
+
+export const signIn = async ({ email, password }: UserInformation) => {
+  const data = {
+    email,
+    password,
+  };
+
+  try {
+    const response = await instance.post(`/auth/signin`, data);
+    return response;
+  } catch (error) {
+    console.log("sign in error : ", error);
     return null;
   }
 };
