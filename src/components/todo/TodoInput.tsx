@@ -18,10 +18,6 @@ const TodoInput = () => {
     }
   }, [todoInput]);
 
-  useEffect(() => {
-    console.log(todoInput);
-  }, [todoInput]);
-
   return (
     <>
       <input data-testid='new-todo-input' onChange={handleTodoInput} />
