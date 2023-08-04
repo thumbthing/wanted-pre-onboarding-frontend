@@ -74,7 +74,9 @@ const SignForm = () => {
           onChange={handlePassword}
         />
         <button
-          data-testid='signup-button'
+          data-testid={
+            URL.pathname === "/signup" ? "signup-button" : "signin-button"
+          }
           disabled={handleValid()}
           onClick={URL.pathname === "/signup" ? handleSignUp : handleSignIn}
         >
