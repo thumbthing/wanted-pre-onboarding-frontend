@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { signUp } from "../../api/auth/auth";
+import { signIn, signUp } from "../../api/auth/auth";
 
 const SignForm = () => {
   const [email, setEmail] = useState("");
@@ -33,6 +33,7 @@ const SignForm = () => {
   const handleSignUp = useCallback(async () => {
     try {
       const response = await signUp({ email, password });
+
       if (response?.status === 201) {
         alert("회원가입이 완료되었습니다.");
         navigate("/");
@@ -44,24 +45,43 @@ const SignForm = () => {
     }
   }, [email, password, navigate]);
 
+  const handleSignIn = useCallback(async () => {
+    try {
+      const response = await signIn({ email, password });
+
+      if (response?.status === 200) {
+        alert("로그인 성공");
+        const accessToken = response.data.access_token;
+        localStorage.setItem("access_token", accessToken);
+      } else {
+        alert("로그인 실패");
+      }
+    } catch (error) {}
+  }, [email, password]);
+
   return (
-    <div>
-      <h3>아이디</h3>
-      <input data-testid='email-input' type='email' onChange={handleEmail} />
-      <h3>비밀번호</h3>
-      <input
-        data-testid='password-input'
-        type='password'
-        onChange={handlePassword}
-      />
-      <button
-        data-testid='signup-button'
-        disabled={handleValid()}
-        onClick={handleSignUp}
-      >
-        {URL.pathname === "/signup" ? "회원가입" : "로그인"}
-      </button>
-    </div>
+    <>
+      <div>
+        <h1>{URL.pathname === "/signup" ? "회원가입" : "로그인"}</h1>
+      </div>
+      <div>
+        <h3>아이디</h3>
+        <input data-testid='email-input' type='email' onChange={handleEmail} />
+        <h3>비밀번호</h3>
+        <input
+          data-testid='password-input'
+          type='password'
+          onChange={handlePassword}
+        />
+        <button
+          data-testid='signup-button'
+          disabled={handleValid()}
+          onClick={URL.pathname === "/signup" ? handleSignUp : handleSignIn}
+        >
+          {URL.pathname === "/signup" ? "회원가입" : "로그인"}
+        </button>
+      </div>
+    </>
   );
 };
 
