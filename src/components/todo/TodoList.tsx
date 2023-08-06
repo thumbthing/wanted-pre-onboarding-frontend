@@ -1,43 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import { getTodos, updateTodo } from "../../api/todo/todo";
 import Todo from "./Todo";
 import TodoUpdateForm from "./TodoUpdateForm";
+import { TodosProps } from "../../pages/Todo";
 
-export interface TodoListProps {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-  userId?: number;
+interface TodoListProps {
+  todos: TodosProps[];
+  handleIsComplete: (todos: TodosProps) => Promise<void>;
 }
 
-const TodoList = () => {
-  const [todoList, setTodoList] = useState<TodoListProps[]>([]);
+const TodoList = ({ todos, handleIsComplete }: TodoListProps) => {
   const [isEditing, setIsEditing] = useState<number>();
-
-  useEffect(() => {
-    const getTodoList = async () => {
-      try {
-        const response = await getTodos();
-
-        setTodoList(response?.data);
-      } catch (error) {
-        console.log("todo list get error : ", error);
-      }
-    };
-    getTodoList();
-  }, []);
-
-  const handleIsComplete = async ({ id, todo, isCompleted }: TodoListProps) => {
-    try {
-      const response = await updateTodo(id, todo, !isCompleted);
-      const updatedTodo = todoList.map((item) =>
-        item.id === response?.data.id ? { ...response.data } : item
-      );
-      setTodoList(updatedTodo);
-    } catch (error) {
-      console.log("update error :", error);
-    }
-  };
 
   const handleIsEditing = useCallback(
     (todoId: number) => {
@@ -54,10 +26,10 @@ const TodoList = () => {
 
   return (
     <div>
-      {todoList.map((todos) => (
+      {todos.map((todos) => (
         <li key={todos.id}>
           {isEditing === todos.id ? (
-            <TodoUpdateForm />
+            <TodoUpdateForm todos={todos} handleIsEditing={handleIsEditing} />
           ) : (
             <Todo
               todos={todos}
