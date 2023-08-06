@@ -3,8 +3,7 @@ import instance from "../instance";
 interface TodoProps {
   id: number;
   todo: string;
-  isCompleted: boolean;
-  userId: number;
+  isCompleted?: boolean;
 }
 
 export const createTodo = async (todo: string) => {
@@ -26,5 +25,22 @@ export const getTodos = async () => {
     return response;
   } catch (error) {
     console.log("get Todo list Error : ", error);
+  }
+};
+
+export const updateTodo = async (
+  id: number,
+  todo: string,
+  isCompleted: boolean
+) => {
+  const data = {
+    todo: todo,
+    isCompleted: isCompleted,
+  };
+  try {
+    const response = await instance.put(`/todos/${id}`, data);
+    return response;
+  } catch (error) {
+    console.log("update todo error : ", error);
   }
 };
