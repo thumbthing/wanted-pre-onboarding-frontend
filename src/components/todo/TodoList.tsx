@@ -25,7 +25,7 @@ const TodoList = () => {
     getTodoList();
   }, []);
 
-  const handleTodoUpdate = async ({ id, todo, isCompleted }: TodoListProps) => {
+  const handleIsComplete = async ({ id, todo, isCompleted }: TodoListProps) => {
     try {
       const response = await updateTodo(id, todo, !isCompleted);
       const updatedTodo = todoList.map((item) =>
@@ -45,7 +45,7 @@ const TodoList = () => {
     <div>
       {todoList.map((todos, index) => (
         <li key={index}>
-          <Todo todos={todos} handleTodoUpdate={handleTodoUpdate} />
+          <Todo todos={todos} handleIsComplete={handleIsComplete} />
         </li>
       ))}
     </div>

@@ -3,16 +3,16 @@ import { TodoListProps } from "./TodoList";
 
 interface TodoProps {
   todos: TodoListProps;
-  handleTodoUpdate: (todo: TodoListProps) => void;
+  handleIsComplete: (todo: TodoListProps) => void;
 }
 
-const Todo = ({ todos, handleTodoUpdate }: TodoProps) => {
+const Todo = ({ todos, handleIsComplete }: TodoProps) => {
   return (
     <>
       <label>
         <input
           type='checkbox'
-          onChange={() => handleTodoUpdate(todos)}
+          onChange={() => handleIsComplete(todos)}
           checked={todos.isCompleted}
         />
         <span>{todos.todo}</span>
