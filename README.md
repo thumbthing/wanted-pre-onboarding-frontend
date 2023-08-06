@@ -28,4 +28,4 @@ npm start
 
 ## `배포 링크`
 
-[배포링크](http://localhost:3000)
+[배포링크](https://wanted-pre-onboarding-frontend-five-taupe.vercel.app/)
