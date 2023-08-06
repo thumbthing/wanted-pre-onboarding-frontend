@@ -45,13 +45,13 @@ const Todo = () => {
     }
   };
 
-  const handelAddTodo = useCallback((newTodo: TodosProps) => {
+  const handleAddTodo = useCallback((newTodo: TodosProps) => {
     setTodos((todos) => [...todos, newTodo]);
   }, []);
 
   return (
     <div>
-      <TodoInput handleAddTodo={handelAddTodo} />
+      <TodoInput handleAddTodo={handleAddTodo} />
       <TodoList todos={todos} handleIsComplete={handleIsComplete} />
     </div>
   );
