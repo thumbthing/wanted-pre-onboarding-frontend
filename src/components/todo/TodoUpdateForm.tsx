@@ -28,13 +28,18 @@ const TodoUpdateForm = ({
     []
   );
 
-  const handleModifySubmit = useCallback(() => {
-    handleUpdateTodo({
-      ...todos,
-      todo: modifyTodo,
-      isCompleted: modifyIsCompleted,
-    });
-  }, [handleUpdateTodo, modifyTodo, modifyIsCompleted, todos]);
+  const handleModifySubmit = useCallback(async () => {
+    try {
+      handleUpdateTodo({
+        ...todos,
+        todo: modifyTodo,
+        isCompleted: modifyIsCompleted,
+      });
+      handleIsEditing(todos.id);
+    } catch (error) {
+      console.log("modify todo error : ", error);
+    }
+  }, [handleUpdateTodo, modifyTodo, modifyIsCompleted, todos, handleIsEditing]);
 
   return (
     <>
