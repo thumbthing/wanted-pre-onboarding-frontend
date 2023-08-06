@@ -44,3 +44,12 @@ export const updateTodo = async (
     console.log("update todo error : ", error);
   }
 };
+
+export const deleteTodo = async (id: number) => {
+  try {
+    const response = await instance.delete(`/todos/${id}`);
+    return response;
+  } catch (error) {
+    console.log("delete todo error : ", error);
+  }
+};
