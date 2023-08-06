@@ -62,7 +62,7 @@ const SignForm = () => {
 
   return (
     <>
-      <div>
+      <div onClick={() => navigate("/")}>
         <h1>{URL.pathname === "/signup" ? "회원가입" : "로그인"}</h1>
       </div>
       <div>

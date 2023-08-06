@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import Todo from "./Todo";
 import TodoUpdateForm from "./TodoUpdateForm";
 import { TodosProps } from "../../pages/Todo";
+import { StyledList } from "../../style/todo.styled";
 
 interface TodoListProps {
   todos: TodosProps[];
@@ -32,7 +33,7 @@ const TodoList = ({
   );
 
   return (
-    <div>
+    <StyledList>
       {todos.map((todos) => (
         <li key={todos.id}>
           {isEditing === todos.id ? (
@@ -51,7 +52,7 @@ const TodoList = ({
           )}
         </li>
       ))}
-    </div>
+    </StyledList>
   );
 };
 

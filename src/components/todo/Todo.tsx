@@ -16,14 +16,14 @@ const Todo = ({
 }: TodoProps) => {
   return (
     <>
-      <label>
+      <div>
         <input
           type='checkbox'
           onChange={() => handleIsComplete(todos)}
           checked={todos.isCompleted}
         />
         <span>{todos.todo}</span>
-      </label>
+      </div>
       <button
         data-testid='modify-button'
         onClick={() => handleIsEditing(todos.id)}

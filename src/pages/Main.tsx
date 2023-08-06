@@ -1,24 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Container, LinkContainer, StyledLink } from "../style/main.styled";
 
 const Main = () => {
   return (
-    <>
-      <header>원티드 프리온보딩 프론트엔드 - 선발과제</header>
-      <div>
+    <Container>
+      <header>
+        <h1>원티드 프리온보딩 프론트엔드 - 선발과제</h1>
+      </header>
+      <LinkContainer>
         <ul>
           <li>
-            <Link to={`signin`}>로그인</Link>
+            <StyledLink to={`signin`}>로그인</StyledLink>
           </li>
           <li>
-            <Link to={`signup`}>회원가입</Link>
+            <StyledLink to={`signup`}>회원가입</StyledLink>
           </li>
           <li>
-            <Link to={`todo`}>TodoList</Link>
+            <StyledLink to={`todo`}>TodoList</StyledLink>
           </li>
         </ul>
-      </div>
-    </>
+      </LinkContainer>
+    </Container>
   );
 };
 

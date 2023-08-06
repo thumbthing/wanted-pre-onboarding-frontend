@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TodoInput from "../components/todo/TodoInput";
 import { deleteTodo, getTodos, updateTodo } from "../api/todo/todo";
 import TodoList from "../components/todo/TodoList";
+import { TodoContainer } from "../style/todo.styled";
 
 export interface TodosProps {
   id: number;
@@ -71,7 +72,7 @@ const Todo = () => {
     }
   };
   return (
-    <div>
+    <TodoContainer>
       <TodoInput handleAddTodo={handleAddTodo} />
       <TodoList
         todos={todos}
@@ -79,7 +80,7 @@ const Todo = () => {
         handleDeleteTodo={handleDeleteTodo}
         handleUpdateTodo={handleUpdateTodo}
       />
-    </div>
+    </TodoContainer>
   );
 };
 

@@ -1,6 +1,8 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { createTodo } from "../../api/todo/todo";
 import { TodosProps } from "../../pages/Todo";
+import { StyledInputForm } from "../../style/todo.styled";
+import { useNavigate } from "react-router-dom";
 
 interface TodoInputProps {
   handleAddTodo: (newTodo: TodosProps) => void;
@@ -8,6 +10,7 @@ interface TodoInputProps {
 
 const TodoInput = ({ handleAddTodo }: TodoInputProps) => {
   const [todoInput, setTodoInput] = useState("");
+  const navigate = useNavigate();
 
   const handleTodoInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
@@ -25,10 +28,13 @@ const TodoInput = ({ handleAddTodo }: TodoInputProps) => {
 
   return (
     <>
-      <input data-testid='new-todo-input' onChange={handleTodoInput} />
-      <button data-testid='new-todo-add-button' onClick={handleTodoCreate}>
-        추가
-      </button>
+      <h2 onClick={() => navigate("/")}>todo list</h2>
+      <StyledInputForm>
+        <input data-testid='new-todo-input' onChange={handleTodoInput} />
+        <button data-testid='new-todo-add-button' onClick={handleTodoCreate}>
+          추가
+        </button>
+      </StyledInputForm>
     </>
   );
 };
