@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { getTodos, updateTodo } from "../../api/todo/todo";
+import Todo from "./Todo";
 
-interface TodoListProps {
+export interface TodoListProps {
   id: number;
   todo: string;
   isCompleted: boolean;
@@ -36,20 +37,15 @@ const TodoList = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(todoList);
+  }, [todoList]);
+
   return (
     <div>
       {todoList.map((todos, index) => (
         <li key={index}>
-          <label>
-            <input
-              type='checkbox'
-              onChange={() => handleTodoUpdate(todos)}
-              checked={todos.isCompleted}
-            />
-            <span>{todos.todo}</span>
-          </label>
-          <button data-testid='modify-button'>수정</button>
-          <button data-testid='delete-button'>삭제</button>
+          <Todo todos={todos} handleTodoUpdate={handleTodoUpdate} />
         </li>
       ))}
     </div>
