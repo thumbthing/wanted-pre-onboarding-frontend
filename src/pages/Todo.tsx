@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import TodoInput from "../components/todo/TodoInput";
-import { getTodos, updateTodo } from "../api/todo/todo";
+import { deleteTodo, getTodos, updateTodo } from "../api/todo/todo";
 import TodoList from "../components/todo/TodoList";
 
 export interface TodosProps {
@@ -49,10 +49,23 @@ const Todo = () => {
     setTodos((todos) => [...todos, newTodo]);
   }, []);
 
+  const handleDeleteTodo = async (id: number) => {
+    try {
+      await deleteTodo(id);
+      const deletedTodo = todos.filter((item) => item.id !== id);
+      setTodos(deletedTodo);
+    } catch (error) {
+      console.log("delete todo error : ", error);
+    }
+  };
   return (
     <div>
       <TodoInput handleAddTodo={handleAddTodo} />
-      <TodoList todos={todos} handleIsComplete={handleIsComplete} />
+      <TodoList
+        todos={todos}
+        handleIsComplete={handleIsComplete}
+        handleDeleteTodo={handleDeleteTodo}
+      />
     </div>
   );
 };

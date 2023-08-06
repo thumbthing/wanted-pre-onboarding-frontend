@@ -5,9 +5,15 @@ interface TodoProps {
   todos: TodosProps;
   handleIsComplete: (todo: TodosProps) => void;
   handleIsEditing: (todoId: number) => void;
+  handleDeleteTodo: (todoId: number) => void;
 }
 
-const Todo = ({ todos, handleIsComplete, handleIsEditing }: TodoProps) => {
+const Todo = ({
+  todos,
+  handleIsComplete,
+  handleIsEditing,
+  handleDeleteTodo,
+}: TodoProps) => {
   return (
     <>
       <label>
@@ -24,7 +30,12 @@ const Todo = ({ todos, handleIsComplete, handleIsEditing }: TodoProps) => {
       >
         수정
       </button>
-      <button data-testid='delete-button'>삭제</button>
+      <button
+        data-testid='delete-button'
+        onClick={() => handleDeleteTodo(todos.id)}
+      >
+        삭제
+      </button>
     </>
   );
 };

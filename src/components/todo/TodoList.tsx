@@ -6,9 +6,14 @@ import { TodosProps } from "../../pages/Todo";
 interface TodoListProps {
   todos: TodosProps[];
   handleIsComplete: (todos: TodosProps) => Promise<void>;
+  handleDeleteTodo: (todosId: number) => void;
 }
 
-const TodoList = ({ todos, handleIsComplete }: TodoListProps) => {
+const TodoList = ({
+  todos,
+  handleIsComplete,
+  handleDeleteTodo,
+}: TodoListProps) => {
   const [isEditing, setIsEditing] = useState<number>();
 
   const handleIsEditing = useCallback(
@@ -35,6 +40,7 @@ const TodoList = ({ todos, handleIsComplete }: TodoListProps) => {
               todos={todos}
               handleIsComplete={handleIsComplete}
               handleIsEditing={handleIsEditing}
+              handleDeleteTodo={handleDeleteTodo}
             />
           )}
         </li>
