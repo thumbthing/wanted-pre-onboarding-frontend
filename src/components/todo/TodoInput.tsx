@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { createTodo } from "../../api/todo/todo";
 
 const TodoInput = () => {
