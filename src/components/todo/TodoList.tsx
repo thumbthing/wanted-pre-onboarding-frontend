@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { getTodos } from "../../api/todo/todo";
+import { useEffect, useState } from "react";
+import { getTodos, updateTodo } from "../../api/todo/todo";
 
 interface TodoListProps {
   id: number;
   todo: string;
   isCompleted: boolean;
-  userId: number;
+  userId?: number;
 }
 
 const TodoList = () => {
@@ -24,12 +24,28 @@ const TodoList = () => {
     getTodoList();
   }, []);
 
+  const handleTodoUpdate = async ({ id, todo, isCompleted }: TodoListProps) => {
+    try {
+      const response = await updateTodo(id, todo, !isCompleted);
+      const updatedTodo = todoList.map((item) =>
+        item.id === response?.data.id ? { ...response.data } : item
+      );
+      setTodoList(updatedTodo);
+    } catch (error) {
+      console.log("update error :", error);
+    }
+  };
+
   return (
     <div>
       {todoList.map((todos, index) => (
         <li key={index}>
           <label>
-            <input type='checkbox' />
+            <input
+              type='checkbox'
+              onChange={() => handleTodoUpdate(todos)}
+              checked={todos.isCompleted}
+            />
             <span>{todos.todo}</span>
           </label>
           <button data-testid='modify-button'>수정</button>
