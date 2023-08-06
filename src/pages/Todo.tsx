@@ -45,6 +45,18 @@ const Todo = () => {
     }
   };
 
+  const handleUpdateTodo = async ({ id, todo, isCompleted }: TodosProps) => {
+    try {
+      const response = await updateTodo(id, todo, isCompleted);
+      const updatedTodo = todos.map((item) =>
+        item.id === response?.data.id ? { ...response?.data } : item
+      );
+      setTodos(updatedTodo);
+    } catch (error) {
+      console.log("update Todo error : ", error);
+    }
+  };
+
   const handleAddTodo = useCallback((newTodo: TodosProps) => {
     setTodos((todos) => [...todos, newTodo]);
   }, []);
@@ -65,6 +77,7 @@ const Todo = () => {
         todos={todos}
         handleIsComplete={handleIsComplete}
         handleDeleteTodo={handleDeleteTodo}
+        handleUpdateTodo={handleUpdateTodo}
       />
     </div>
   );

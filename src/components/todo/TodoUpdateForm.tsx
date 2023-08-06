@@ -4,9 +4,14 @@ import { TodosProps } from "../../pages/Todo";
 interface TodoUpdateFormProps {
   todos: TodosProps;
   handleIsEditing: (todoId: number) => void;
+  handleUpdateTodo: (todo: TodosProps) => void;
 }
 
-const TodoUpdateForm = ({ todos, handleIsEditing }: TodoUpdateFormProps) => {
+const TodoUpdateForm = ({
+  todos,
+  handleIsEditing,
+  handleUpdateTodo,
+}: TodoUpdateFormProps) => {
   const [modifyIsCompleted, setModifyIsCompleted] = useState(todos.isCompleted);
   const [modifyTodo, setModifyTodo] = useState(todos.todo);
 
@@ -23,6 +28,14 @@ const TodoUpdateForm = ({ todos, handleIsEditing }: TodoUpdateFormProps) => {
     []
   );
 
+  const handleModifySubmit = useCallback(() => {
+    handleUpdateTodo({
+      ...todos,
+      todo: modifyTodo,
+      isCompleted: modifyIsCompleted,
+    });
+  }, [handleUpdateTodo, modifyTodo, modifyIsCompleted, todos]);
+
   return (
     <>
       <label>
@@ -37,7 +50,9 @@ const TodoUpdateForm = ({ todos, handleIsEditing }: TodoUpdateFormProps) => {
           onChange={handleModifyTodo}
         />
       </label>
-      <button data-testid='submit-button'>제출</button>
+      <button data-testid='submit-button' onClick={handleModifySubmit}>
+        제출
+      </button>
       <button
         data-testid='cancel-button'
         onClick={() => handleIsEditing(todos.id)}

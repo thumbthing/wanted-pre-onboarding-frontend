@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import Todo from "./Todo";
 import TodoUpdateForm from "./TodoUpdateForm";
 import { TodosProps } from "../../pages/Todo";
@@ -7,12 +7,14 @@ interface TodoListProps {
   todos: TodosProps[];
   handleIsComplete: (todos: TodosProps) => Promise<void>;
   handleDeleteTodo: (todosId: number) => void;
+  handleUpdateTodo: (todo: TodosProps) => void;
 }
 
 const TodoList = ({
   todos,
   handleIsComplete,
   handleDeleteTodo,
+  handleUpdateTodo,
 }: TodoListProps) => {
   const [isEditing, setIsEditing] = useState<number>();
 
@@ -34,7 +36,11 @@ const TodoList = ({
       {todos.map((todos) => (
         <li key={todos.id}>
           {isEditing === todos.id ? (
-            <TodoUpdateForm todos={todos} handleIsEditing={handleIsEditing} />
+            <TodoUpdateForm
+              todos={todos}
+              handleIsEditing={handleIsEditing}
+              handleUpdateTodo={handleUpdateTodo}
+            />
           ) : (
             <Todo
               todos={todos}
