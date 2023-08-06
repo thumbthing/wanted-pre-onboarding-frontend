@@ -1,9 +1,9 @@
 import React from "react";
-import { TodoListProps } from "./TodoList";
+import { TodosProps } from "../../pages/Todo";
 
 interface TodoProps {
-  todos: TodoListProps;
-  handleIsComplete: (todo: TodoListProps) => void;
+  todos: TodosProps;
+  handleIsComplete: (todo: TodosProps) => void;
   handleIsEditing: (todoId: number) => void;
 }
 
