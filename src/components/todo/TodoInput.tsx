@@ -1,7 +1,12 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { createTodo } from "../../api/todo/todo";
+import { TodosProps } from "../../pages/Todo";
 
-const TodoInput = () => {
+interface TodoInputProps {
+  handleAddTodo: (newTodo: TodosProps) => void;
+}
+
+const TodoInput = ({ handleAddTodo }: TodoInputProps) => {
   const [todoInput, setTodoInput] = useState("");
 
   const handleTodoInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -12,11 +17,11 @@ const TodoInput = () => {
   const handleTodoCreate = useCallback(async () => {
     try {
       const response = await createTodo(todoInput);
-      console.log(response?.status);
+      handleAddTodo(response?.data);
     } catch (error) {
       console.log("todo create error: ", error);
     }
-  }, [todoInput]);
+  }, [todoInput, handleAddTodo]);
 
   return (
     <>
