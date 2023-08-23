@@ -7,9 +7,7 @@ interface TodoProps {
 }
 
 export const createTodo = async (todo: string) => {
-  const data = {
-    todo,
-  };
+  const data = { todo };
 
   try {
     const request = await instance.post("/todos", data);
