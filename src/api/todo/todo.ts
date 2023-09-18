@@ -1,11 +1,5 @@
 import instance from "../instance";
 
-interface TodoProps {
-  id: number;
-  todo: string;
-  isCompleted?: boolean;
-}
-
 export const createTodo = async (todo: string) => {
   const data = { todo };
 

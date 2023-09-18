@@ -1,6 +1,7 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { signIn, signUp } from "../../api/auth/auth";
+import { FormContainer } from "../../style/Sign.styled";
 
 const SignForm = () => {
   const [email, setEmail] = useState("");
@@ -61,7 +62,7 @@ const SignForm = () => {
   }, [email, password, navigate]);
 
   return (
-    <>
+    <FormContainer>
       <div onClick={() => navigate("/")}>
         <h1>{URL.pathname === "/signup" ? "회원가입" : "로그인"}</h1>
       </div>
@@ -74,17 +75,17 @@ const SignForm = () => {
           type='password'
           onChange={handlePassword}
         />
-        <button
-          data-testid={
-            URL.pathname === "/signup" ? "signup-button" : "signin-button"
-          }
-          disabled={handleValid()}
-          onClick={URL.pathname === "/signup" ? handleSignUp : handleSignIn}
-        >
-          {URL.pathname === "/signup" ? "회원가입" : "로그인"}
-        </button>
       </div>
-    </>
+      <button
+        data-testid={
+          URL.pathname === "/signup" ? "signup-button" : "signin-button"
+        }
+        disabled={handleValid()}
+        onClick={URL.pathname === "/signup" ? handleSignUp : handleSignIn}
+      >
+        {URL.pathname === "/signup" ? "회원가입" : "로그인"}
+      </button>
+    </FormContainer>
   );
 };
 
